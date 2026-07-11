@@ -4,7 +4,7 @@ export const faqs: Faq[] = [
   {
     question: "What services does Humpi Technology provide?",
     answer:
-      "We provide software development, website development, mobile apps, QA testing, cloud solutions, DevOps, AI automation, SEO, digital marketing, BPO, IT support, and business consulting.",
+      "We provide website development, mobile app development, BPO and call center services, CRM solutions, digital marketing, messaging campaigns, and business growth services.",
   },
   {
     question: "Can you build a custom website or application for my business?",
@@ -14,7 +14,7 @@ export const faqs: Faq[] = [
   {
     question: "Do you support SEO and digital marketing after launch?",
     answer:
-      "Yes. We can support technical SEO, content planning, analytics, landing pages, and digital marketing campaigns.",
+      "Yes. We can support YouTube promotion, Instagram marketing, Facebook marketing, Meta ads, Google Ads, social media management, landing pages, analytics, and campaign reporting.",
   },
   {
     question: "Can this website connect to a CMS later?",

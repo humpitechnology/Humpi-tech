@@ -9,7 +9,7 @@ export const company = {
   hours: "Monday to Saturday, 10:00 AM - 7:00 PM IST",
   tagline: "Enterprise technology, automation, and digital growth partner.",
   description:
-    "Humpi Technology delivers software development, cloud solutions, AI automation, quality assurance, SEO, digital marketing, BPO, and business consulting for growing organizations.",
+    "Humpi Technology delivers website development, mobile app development, CRM solutions, digital marketing, BPO and call center services, messaging campaigns, and business growth support for growing organizations.",
 };
 
 export const stats = [
@@ -45,7 +45,7 @@ export const timeline = [
   },
   {
     year: "Expansion",
-    title: "Services across software, cloud, QA, SEO, and support",
+    title: "Services across websites, apps, CRM, marketing, BPO, and growth",
     description:
       "The company expanded its delivery capabilities to support full digital journeys from strategy to operations.",
   },
