@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Humpi Technology Website
 
-## Getting Started
+Premium corporate website for **Humpi Technology** built with Next.js 15, React 19, TypeScript, Tailwind CSS, ShadCN-style UI primitives, Framer Motion, Lucide React, React Hook Form, and Zod.
 
-First, run the development server:
+## Features
+
+- Responsive enterprise-grade public website
+- Editable CMS-ready data files under `data/`
+- Services, industries, solutions, portfolio, case studies, careers, blog, testimonials, contact, legal pages, and custom 404
+- Lightweight mocked admin dashboard at `/admin`
+- Dark mode, cookie consent, newsletter, WhatsApp/call actions, scroll progress, back-to-top
+- SEO metadata, sitemap, robots, canonical URLs, Open Graph, Twitter Cards, and JSON-LD
+- Vercel, Netlify, Docker, and Nginx deployment-ready configuration
+
+## Installation
+
+```bash
+npm install
+```
+
+## Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run start
+```
 
-## Learn More
+## Commands
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - start local development
+- `npm run lint` - run ESLint
+- `npm run typecheck` - run TypeScript checks
+- `npm run build` - create production build
+- `npm run start` - run production server
+- `npm run format` - format files with Prettier
+- `npm run format:check` - check formatting
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Folder Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+app/                  App Router pages, SEO routes, layouts
+components/           Reusable UI, layout, forms, sections, admin
+components/ui/        ShadCN-style primitives
+data/                 Editable content layer
+hooks/                Future reusable React hooks
+lib/                  Utilities and constants
+public/images/        Portfolio and testimonial assets
+public/logo/          SVG logo assets and icon
+styles/               Future global style modules
+types/                Shared TypeScript content types
+```
 
-## Deploy on Vercel
+## Content Management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The website content is isolated in `data/*.ts`. Add services, products, reviews, projects, blogs, FAQ, jobs, and industries there without changing UI components. The admin dashboard is mocked and ready to be connected to a backend or headless CMS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill values when integrations are enabled.
+
+## Deployment
+
+### Vercel
+
+Import the repository into Vercel and deploy with the default Next.js settings.
+
+### Netlify
+
+`netlify.toml` is included. Use the Next.js runtime/plugin provided by Netlify.
+
+### Docker
+
+```bash
+docker build -t humpi-technology .
+docker run -p 3000:3000 humpi-technology
+```
+
+### Nginx
+
+Use `nginx.conf` as a reverse proxy example in front of `next start` or a Node process manager.
+
+## Company
+
+- Website: `https://humpitechnology.in`
+- Email: `admin@humpitechnology.in`
+- Phone: `+91 7477234777`
+- Location: Kolkata, West Bengal, India

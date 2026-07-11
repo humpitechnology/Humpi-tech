@@ -1,0 +1,13 @@
+<svg width="260" height="72" viewBox="0 0 260 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="72" height="72" rx="18" fill="url(#paint0_linear)"/>
+  <path d="M22 50V22H32V33H42V22H52V50H42V41H32V50H22Z" fill="white"/>
+  <path d="M56 18L43 31H56V18Z" fill="#8BE7F5" fill-opacity="0.9"/>
+  <text x="88" y="33" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Humpi</text>
+  <text x="88" y="55" fill="#0057FF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Technology</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="6" y1="64" x2="66" y2="8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0057FF"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+</svg>

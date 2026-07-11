@@ -1,0 +1,38 @@
+import {
+  Bot,
+  BriefcaseBusiness,
+  ChartNoAxesCombined,
+  Cloud,
+  Code2,
+  Database,
+  Globe2,
+  Headphones,
+  Megaphone,
+  Rocket,
+  Search,
+  Server,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+import type { IconName } from "@/types/content";
+
+export const iconMap = {
+  bot: Bot,
+  briefcase: BriefcaseBusiness,
+  chart: ChartNoAxesCombined,
+  cloud: Cloud,
+  code: Code2,
+  database: Database,
+  globe: Globe2,
+  headphones: Headphones,
+  megaphone: Megaphone,
+  rocket: Rocket,
+  search: Search,
+  server: Server,
+  shield: ShieldCheck,
+  smartphone: Smartphone,
+  sparkles: Sparkles,
+  workflow: Workflow,
+} satisfies Record<IconName, typeof Code2>;
