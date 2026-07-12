@@ -68,6 +68,49 @@ The website content is isolated in `data/*.ts`. Add services, products, reviews,
 
 Copy `.env.example` to `.env.local` and fill values when integrations are enabled.
 
+### Request a Quote Backend
+
+The contact page posts quote requests to `POST /api/request-quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, appended to Google Sheets, and then sent through SMTP email notifications.
+
+Required variables:
+
+```env
+GOOGLE_SHEET_ID=
+GOOGLE_CLIENT_EMAIL=
+GOOGLE_PRIVATE_KEY=
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASSWORD=
+SALES_EMAIL=admin@humpitechnology.in
+```
+
+Google Sheets setup:
+
+1. Create a Google Cloud service account with Google Sheets API access.
+2. Share the target spreadsheet with `GOOGLE_CLIENT_EMAIL` as an editor.
+3. Add a header row with: `Timestamp`, `Name`, `Email`, `Phone`, `Service`, `Project Details`, `IP Address`.
+4. Put the spreadsheet ID in `GOOGLE_SHEET_ID`.
+5. Store the private key in `GOOGLE_PRIVATE_KEY`; escaped newlines such as `\n` are supported.
+
+Email setup:
+
+1. Add SMTP host, port, username, and password for the sending mailbox.
+2. Set `SALES_EMAIL` to the inbox that should receive admin alerts.
+3. Submit a test quote and confirm both the admin notification and customer auto-response arrive.
+
+End-to-end test checklist:
+
+- Required fields show validation errors before submission.
+- International phone numbers such as `+91 7477234777` are accepted.
+- More than 3000 project detail characters are rejected.
+- A successful submission clears the form and shows the success toast.
+- The Google Sheet receives a new row with timestamp, quote fields, and IP address.
+- `SALES_EMAIL` receives the `New Quote Request` email.
+- The customer receives the `Thank you for contacting Humpi Technologies` email.
+- A repeat submission from the same email within 5 minutes returns a friendly failure.
+- Several rapid requests from the same IP are rate limited.
+
 ## Deployment
 
 ### Vercel

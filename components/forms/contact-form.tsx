@@ -1,21 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Valid email is required"),
-  phone: z.string().min(8, "Phone number is required"),
-  service: z.string().min(2, "Tell us what you need"),
-  message: z.string().min(10, "Please share a little more detail"),
-});
-
-type ContactInput = z.infer<typeof contactSchema>;
+import { quoteRequestSchema, type QuoteRequestFormInput } from "@/lib/validation";
 
 export function ContactForm() {
   const {
@@ -23,11 +14,34 @@ export function ContactForm() {
     handleSubmit,
     formState: { errors, isSubmitSuccessful, isSubmitting },
     reset,
-  } = useForm<ContactInput>({ resolver: zodResolver(contactSchema) });
+  } = useForm<QuoteRequestFormInput>({
+    resolver: zodResolver(quoteRequestSchema),
+    defaultValues: {
+      website: "",
+    },
+  });
 
-  async function onSubmit() {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  async function onSubmit(values: QuoteRequestFormInput) {
+    const response = await fetch("/api/request-quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    if (!response.ok) {
+      toast.error("Something went wrong.", {
+        description: "Please try again.",
+      });
+      return;
+    }
+
     reset();
+    toast.success("Thank you!", {
+      description:
+        "Your quotation request has been submitted successfully. Our team will contact you shortly.",
+    });
   }
 
   return (
@@ -48,12 +62,24 @@ export function ContactForm() {
           <Input placeholder="Service required" {...register("service")} />
         </Field>
       </div>
-      <Field error={errors.message?.message}>
-        <Textarea placeholder="Project goals, timeline, and budget range" {...register("message")} />
+      <Field error={errors.projectDetails?.message}>
+        <Textarea
+          maxLength={3000}
+          placeholder="Project goals, timeline, and budget range"
+          {...register("projectDetails")}
+        />
       </Field>
+      <input
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+        {...register("website")}
+      />
       {isSubmitSuccessful ? (
         <p className="rounded-md bg-green-50 px-3 py-2 text-sm text-green-700">
-          Thanks. This demo form is ready for backend integration.
+          Thank you! Your quotation request has been submitted successfully.
         </p>
       ) : null}
       <Button type="submit" disabled={isSubmitting}>

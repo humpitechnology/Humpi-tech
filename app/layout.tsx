@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import { CookieConsent } from "@/components/layout/cookie-consent";
 import { FloatingActions } from "@/components/layout/floating-actions";
 import Footer from "@/components/layout/footer";
@@ -84,11 +85,7 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full bg-background text-foreground">
         <script
           type="application/ld+json"
@@ -103,6 +100,7 @@ export default function RootLayout({
           </div>
           <FloatingActions />
           <CookieConsent />
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>
