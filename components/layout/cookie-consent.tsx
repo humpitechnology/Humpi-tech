@@ -16,7 +16,7 @@ export function CookieConsent() {
 
   return (
     <div className="fixed bottom-5 left-5 z-50 max-w-md rounded-lg border border-border bg-card p-4 shadow-xl">
-      <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
+      <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
         We use essential cookies and analytics-ready hooks to improve website
         performance and user experience.
       </p>

@@ -16,7 +16,7 @@ export default function Footer() {
             width={210}
             height={58}
           />
-          <p className="mt-5 max-w-sm text-sm leading-6 text-slate-300">
+          <p className="mt-5 max-w-sm text-sm leading-6 text-gray-600 dark:text-gray-300">
             {company.description}
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function Footer() {
           <h2 className="text-sm font-bold uppercase tracking-wide">Company</h2>
           <div className="mt-4 grid gap-3">
             {navigation.slice(1, 8).map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm text-slate-300 hover:text-white">
+              <Link key={item.href} href={item.href} className="text-sm text-gray-600 hover:text-white">
                 {item.label}
               </Link>
             ))}
@@ -37,7 +37,7 @@ export default function Footer() {
               <Link
                 key={service.slug}
                 href="/services"
-                className="text-sm text-slate-300 hover:text-white"
+                className="text-sm text-gray-600 hover:text-white"
               >
                 {service.title}
               </Link>
@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
         <div>
           <h2 className="text-sm font-bold uppercase tracking-wide">Contact</h2>
-          <div className="mt-4 grid gap-3 text-sm text-slate-300">
+          <div className="mt-4 grid gap-3 text-sm text-gray-600">
             <a className="flex gap-2 hover:text-white" href={`mailto:${company.email}`}>
               <Mail className="mt-0.5 size-4" /> {company.email}
             </a>

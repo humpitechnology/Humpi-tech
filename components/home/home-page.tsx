@@ -40,7 +40,7 @@ export function HomePage() {
               </Link>
               <a
                 href="/company-profile.pdf"
-                className="inline-flex min-h-11 items-center rounded-md border border-border bg-card px-5 text-sm font-bold text-secondary hover:border-primary hover:text-primary"
+                className="inline-flex min-h-11 items-center rounded-md border border-border bg-card px-5 text-sm font-bold text-gray-900 dark:text-gray-100 hover:border-primary hover:text-primary"
               >
                 <Download className="mr-2 size-4" /> Company Profile
               </a>
@@ -49,7 +49,7 @@ export function HomePage() {
           <Reveal className="glass w-full min-w-0 overflow-hidden rounded-lg border border-white/60 p-5 shadow-2xl shadow-blue-950/10 dark:border-white/10">
             <div className="grid gap-4">
               <div className="rounded-lg bg-secondary p-6 text-white">
-                <p className="text-sm text-slate-300">Delivery Command Center</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Delivery Command Center</p>
                 <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
                   Strategy to support, one partner.
                 </h2>
@@ -58,7 +58,7 @@ export function HomePage() {
                 {stats.map((stat) => (
                   <div key={stat.label} className="min-w-0 rounded-lg bg-card p-5">
                     <p className="text-3xl font-black text-primary">{stat.value}</p>
-                    <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{stat.label}</p>
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -74,9 +74,9 @@ export function HomePage() {
         <div className="grid gap-4 md:grid-cols-3">
           {values.map((value) => (
             <Reveal key={value}>
-              <Card className="flex h-full items-start gap-3">
+              <Card className="flex h-full items-start gap-3 border-slate-200 bg-muted text-gray-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-gray-100 dark:shadow-black/10">
                 <CheckCircle2 className="mt-1 size-5 text-accent" />
-                <p className="font-semibold text-secondary">{value}</p>
+                <p className="font-semibold">{value}</p>
               </Card>
             </Reveal>
           ))}
@@ -118,8 +118,8 @@ export function HomePage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {industries.map((industry) => (
             <Card key={industry.slug} className="p-5">
-              <h3 className="font-bold text-secondary">{industry.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <h3 className="font-bold text-gray-900 dark:text-gray-100">{industry.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
                 {industry.description}
               </p>
             </Card>
@@ -144,8 +144,8 @@ export function HomePage() {
               />
               <div className="p-5">
                 <p className="text-sm font-semibold text-primary">{project.category}</p>
-                <h3 className="mt-2 text-xl font-bold text-secondary">{project.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">{project.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {project.description}
                 </p>
               </div>
@@ -167,7 +167,7 @@ export function HomePage() {
                   <Star key={index} className="size-4 fill-current" />
                 ))}
               </div>
-              <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
                 &ldquo;{item.review}&rdquo;
               </p>
               <div className="mt-5 flex items-center gap-3">
@@ -179,7 +179,7 @@ export function HomePage() {
                   className="rounded-full"
                 />
                 <div>
-                  <p className="font-bold text-secondary">{item.name}</p>
+                  <p className="font-bold text-gray-900 dark:text-gray-100">{item.name}</p>
                   <p className="text-sm text-slate-500">
                     {item.designation}, {item.company}
                   </p>
@@ -194,8 +194,8 @@ export function HomePage() {
         <div className="grid gap-4 md:grid-cols-2">
           {faqs.map((faq) => (
             <Card key={faq.question}>
-              <h3 className="font-bold text-secondary">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              <h3 className="font-bold text-gray-900 dark:text-gray-100">{faq.question}</h3>
+              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                 {faq.answer}
               </p>
             </Card>
@@ -213,8 +213,8 @@ export function HomePage() {
             <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-primary/40">
                 <p className="text-sm font-semibold text-primary">{post.category}</p>
-                <h3 className="mt-3 text-xl font-bold text-secondary">{post.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <h3 className="mt-3 text-xl font-bold text-gray-900 dark:text-gray-100">{post.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {post.excerpt}
                 </p>
               </Card>
@@ -230,7 +230,7 @@ export function HomePage() {
             <h2 className="mt-3 text-4xl font-black">
               Ready to modernize your digital operations?
             </h2>
-            <p className="mt-4 text-slate-300">
+            <p className="mt-4 text-gray-600 dark:text-gray-300">
               Talk to Humpi Technology about your website, mobile app, CRM, digital marketing, BPO,
               or growth needs.
             </p>
@@ -259,7 +259,7 @@ function Section({
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <Badge>{eyebrow}</Badge>
-            <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-secondary sm:text-4xl">
+            <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
               {title}
             </h2>
           </div>

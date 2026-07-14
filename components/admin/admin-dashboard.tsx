@@ -52,7 +52,7 @@ export function AdminDashboard() {
           <div className="inline-flex size-12 items-center justify-center rounded-lg bg-primary text-white">
             <Lock className="size-5" />
           </div>
-          <h1 className="mt-5 text-3xl font-black text-secondary">Admin Login</h1>
+          <h1 className="mt-5 text-3xl font-black text-gray-900 dark:text-gray-100">Admin Login</h1>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
             Mock authentication UI. Connect this screen to your backend auth provider later.
           </p>
@@ -70,7 +70,7 @@ export function AdminDashboard() {
     <section className="min-h-screen bg-muted">
       <div className="grid lg:grid-cols-[280px_1fr]">
         <aside className="border-r border-border bg-card p-4 lg:min-h-screen">
-          <h1 className="px-3 py-4 text-xl font-black text-secondary">Humpi Admin</h1>
+          <h1 className="px-3 py-4 text-xl font-black text-gray-900 dark:text-gray-100">Humpi Admin</h1>
           <div className="grid gap-1">
             {nav.map((item) => {
               const Icon = item.icon;
@@ -93,7 +93,7 @@ export function AdminDashboard() {
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-bold uppercase tracking-wide text-primary">Mock CMS UI</p>
-              <h2 className="text-3xl font-black text-secondary">{nav.find((item) => item.key === active)?.label}</h2>
+              <h2 className="text-3xl font-black text-gray-900 dark:text-gray-100">{nav.find((item) => item.key === active)?.label}</h2>
             </div>
             <Button variant="secondary">Add New</Button>
           </div>
@@ -115,9 +115,9 @@ function AdminPanel({ active }: { active: string }) {
         <Card className="md:col-span-4">
           <div className="flex items-center gap-3">
             <BarChart3 className="size-5 text-primary" />
-            <h3 className="font-black text-secondary">Backend integration notes</h3>
+            <h3 className="font-black text-gray-900 dark:text-gray-100">Backend integration notes</h3>
           </div>
-          <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
             Data is isolated in files under /data. Replace those imports with API calls, Prisma, Supabase, Strapi, Sanity, or another CMS without changing page layouts.
           </p>
         </Card>
@@ -128,7 +128,7 @@ function AdminPanel({ active }: { active: string }) {
   if (active === "settings") {
     return (
       <Card className="max-w-3xl">
-        <h3 className="text-xl font-black text-secondary">Contact Information</h3>
+        <h3 className="text-xl font-black text-gray-900 dark:text-gray-100">Contact Information</h3>
         <div className="mt-5 grid gap-4">
           <Input defaultValue={company.name} />
           <Input defaultValue={company.email} />
@@ -143,7 +143,7 @@ function AdminPanel({ active }: { active: string }) {
   if (active === "seo") {
     return (
       <Card className="max-w-3xl">
-        <h3 className="text-xl font-black text-secondary">SEO Settings</h3>
+        <h3 className="text-xl font-black text-gray-900 dark:text-gray-100">SEO Settings</h3>
         <div className="mt-5 grid gap-4">
           <Input defaultValue="Humpi Technology | IT Services, Software, AI Automation and Digital Growth" />
           <Textarea defaultValue={company.description} />
@@ -186,7 +186,7 @@ function Table({ headers, rows }: { headers: string[]; rows: string[][] }) {
           <tbody>
             {rows.map((row) => (
               <tr key={row.join("-")} className="border-b border-border">
-                {row.map((cell) => <td key={cell} className="max-w-md px-4 py-3 text-slate-600 dark:text-slate-300">{cell}</td>)}
+                {row.map((cell) => <td key={cell} className="max-w-md px-4 py-3 text-gray-600 dark:text-gray-300">{cell}</td>)}
                 <td className="px-4 py-3"><button className="font-bold text-primary">Edit</button></td>
               </tr>
             ))}

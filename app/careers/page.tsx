@@ -12,14 +12,14 @@ export default function CareersPage() {
           <div className="grid gap-5">
             {jobs.map((job) => (
               <Card key={job.title}>
-                <h2 className="text-2xl font-black text-secondary">{job.title}</h2>
+                <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100">{job.title}</h2>
                 <p className="mt-2 text-sm font-semibold text-primary">{job.location} · {job.type} · {job.experience}</p>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{job.description}</p>
+                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">{job.description}</p>
               </Card>
             ))}
           </div>
           <Card>
-            <h2 className="text-2xl font-black text-secondary">Apply now</h2>
+            <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100">Apply now</h2>
             <div className="mt-6"><ApplicationForm /></div>
           </Card>
         </div>

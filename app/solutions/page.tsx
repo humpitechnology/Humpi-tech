@@ -20,8 +20,8 @@ export default function SolutionsPage() {
         <div className="mx-auto grid w-full max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3">
           {solutions.map((solution) => (
             <Card key={solution}>
-              <h2 className="text-xl font-black text-secondary">{solution}</h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">A structured engagement with discovery, roadmap, delivery milestones, quality gates, and measurable success indicators.</p>
+              <h2 className="text-xl font-black text-gray-900 dark:text-gray-100">{solution}</h2>
+              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">A structured engagement with discovery, roadmap, delivery milestones, quality gates, and measurable success indicators.</p>
               <Link href="/contact" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">Plan this solution <ArrowRight className="size-4" /></Link>
             </Card>
           ))}

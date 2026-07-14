@@ -12,13 +12,13 @@ export function ServiceCard({ service }: { service: Service }) {
       <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
         <Icon className="size-6" />
       </div>
-      <h2 className="mt-5 text-xl font-bold text-secondary">{service.title}</h2>
-      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+      <h2 className="mt-5 text-xl font-bold text-gray-900 dark:text-gray-100">{service.title}</h2>
+      <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
         {service.description}
       </p>
       <ul className="mt-5 grid gap-2">
         {service.features.slice(0, 3).map((feature) => (
-          <li key={feature} className="flex gap-2 text-sm text-slate-600 dark:text-slate-300">
+          <li key={feature} className="flex gap-2 text-sm text-gray-700 dark:text-gray-300">
             <CheckCircle2 className="mt-0.5 size-4 text-accent" />
             {feature}
           </li>

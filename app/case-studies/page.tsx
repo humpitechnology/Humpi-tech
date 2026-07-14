@@ -10,16 +10,16 @@ export default function CaseStudiesPage() {
         <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2">
           {caseStudies.map((study) => (
             <Card key={study.slug}>
-              <h2 className="text-2xl font-black text-secondary">{study.title}</h2>
+              <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100">{study.title}</h2>
               <Info label="Problem" value={study.problem} />
               <Info label="Solution" value={study.solution} />
               <div className="mt-5 flex flex-wrap gap-2">
                 {study.technology.map((tech) => <span key={tech} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{tech}</span>)}
               </div>
-              <ul className="mt-5 grid gap-2 text-sm text-slate-600 dark:text-slate-300">
+              <ul className="mt-5 grid gap-2 text-sm text-gray-600 dark:text-gray-300">
                 {study.results.map((result) => <li key={result}>• {result}</li>)}
               </ul>
-              <blockquote className="mt-5 border-l-4 border-primary pl-4 text-sm font-semibold text-secondary">
+              <blockquote className="mt-5 border-l-4 border-primary pl-4 text-sm font-semibold text-gray-900 dark:text-gray-100">
                 &ldquo;{study.testimonial}&rdquo;
               </blockquote>
             </Card>

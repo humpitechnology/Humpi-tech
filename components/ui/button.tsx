@@ -10,8 +10,8 @@ const buttonVariants = cva(
         default:
           "bg-primary text-white shadow-sm hover:bg-blue-700 focus-visible:outline-primary",
         secondary:
-          "border border-border bg-card text-secondary hover:border-primary hover:text-primary",
-        ghost: "text-secondary hover:bg-muted",
+          "border border-border bg-card text-gray-900 dark:text-gray-100 hover:border-primary hover:text-primary",
+        ghost: "text-gray-900 dark:text-gray-100 hover:bg-muted",
         dark: "bg-secondary text-white hover:bg-slate-800",
       },
     },

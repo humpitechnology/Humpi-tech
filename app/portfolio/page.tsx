@@ -14,11 +14,11 @@ export default function PortfolioPage() {
               <Image src={project.image} alt={project.title} width={960} height={640} className="aspect-[4/3] w-full object-cover" />
               <div className="p-6">
                 <p className="text-sm font-bold text-primary">{project.category}</p>
-                <h2 className="mt-2 text-2xl font-black text-secondary">{project.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.description}</p>
+                <h2 className="mt-2 text-2xl font-black text-gray-900 dark:text-gray-100">{project.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">{project.description}</p>
                 <dl className="mt-5 grid gap-2 text-sm">
-                  <div><dt className="font-bold text-secondary">Client</dt><dd className="text-slate-600 dark:text-slate-300">{project.client}</dd></div>
-                  <div><dt className="font-bold text-secondary">Duration</dt><dd className="text-slate-600 dark:text-slate-300">{project.duration}</dd></div>
+                  <div><dt className="font-bold text-gray-900 dark:text-gray-100">Client</dt><dd className="text-gray-600 dark:text-gray-300">{project.client}</dd></div>
+                  <div><dt className="font-bold text-gray-900 dark:text-gray-100">Duration</dt><dd className="text-gray-600 dark:text-gray-300">{project.duration}</dd></div>
                 </dl>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {project.technologies.map((tech) => <span key={tech} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{tech}</span>)}

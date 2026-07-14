@@ -19,7 +19,7 @@ export default function TestimonialsPage() {
               <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
                 &ldquo;{item.review}&rdquo;
               </p>
-              <p className="mt-5 font-bold text-secondary">{item.name}</p>
+              <p className="mt-5 font-bold text-gray-900 dark:text-gray-100">{item.name}</p>
               <p className="text-sm text-slate-500">{item.designation}, {item.company}</p>
             </Card>
           ))}

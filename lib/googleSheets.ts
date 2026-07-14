@@ -29,7 +29,7 @@ function getSheetsClient() {
   const auth = new google.auth.JWT({
     email: clientEmail,
     key: getGooglePrivateKey(),
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    scopes: ["https://docs.google.com/spreadsheets/d/1nolED1l6p-Hx8LInRjarmYLu2nWy_HB03b2rT59Sfu0/edit?pli=1&gid=0#gid=0"],
   });
 
   return google.sheets({ version: "v4", auth });

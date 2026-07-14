@@ -24,7 +24,7 @@ export default function Navbar() {
             priority
           />
           <span className="ml-3 leading-tight">
-            <span className="block text-base font-black text-secondary">Humpi</span>
+            <span className="block text-base font-black text-gray-900 dark:text-gray-100">Humpi</span>
             <span className="block text-sm font-black text-primary">Technology</span>
           </span>
         </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold text-slate-600 transition hover:text-primary dark:text-slate-300"
+              className="text-sm font-semibold text-gray-600 transition hover:text-primary dark:text-gray-300"
             >
               {item.label}
             </Link>

@@ -17,25 +17,25 @@ export default function BlogPage() {
               <Link key={post.slug} href={`/blog/${post.slug}`}>
                 <Card className="transition hover:-translate-y-1 hover:border-primary/40">
                   <p className="text-sm font-bold text-primary">{post.category} · {post.readTime}</p>
-                  <h2 className="mt-3 text-2xl font-black text-secondary">{post.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{post.excerpt}</p>
+                  <h2 className="mt-3 text-2xl font-black text-gray-900 dark:text-gray-100">{post.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">{post.excerpt}</p>
                 </Card>
               </Link>
             ))}
           </div>
           <aside className="grid content-start gap-5">
             <Card>
-              <h2 className="font-bold text-secondary">Search</h2>
+              <h2 className="font-bold text-gray-900 dark:text-gray-100">Search</h2>
               <Input className="mt-3" placeholder="Search articles" />
             </Card>
             <Card>
-              <h2 className="font-bold text-secondary">Categories</h2>
+              <h2 className="font-bold text-gray-900 dark:text-gray-100">Categories</h2>
               <div className="mt-3 flex flex-wrap gap-2">
                 {categories.map((category) => <span key={category} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{category}</span>)}
               </div>
             </Card>
             <Card>
-              <h2 className="font-bold text-secondary">Recent posts</h2>
+              <h2 className="font-bold text-gray-900 dark:text-gray-100">Recent posts</h2>
               <div className="mt-3 grid gap-3">
                 {blogs.slice(0, 3).map((post) => <Link key={post.slug} href={`/blog/${post.slug}`} className="text-sm font-semibold text-primary">{post.title}</Link>)}
               </div>

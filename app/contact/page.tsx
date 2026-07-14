@@ -8,10 +8,10 @@ export default function ContactPage() {
       <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="text-sm font-bold uppercase tracking-wide text-accent">Contact</p>
-          <h1 className="mt-4 text-4xl font-black text-secondary sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-black text-gray-900 dark:text-gray-100 sm:text-5xl">
             Tell us what you want to build.
           </h1>
-          <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">
+          <p className="mt-5 text-lg leading-8 text-gray-600 dark:text-gray-300">
             Reach out with your project goals, timeline, and the business problem you want
             technology to solve.
           </p>
@@ -40,7 +40,7 @@ export default function ContactPage() {
           </div>
         </div>
         <Card>
-          <h2 className="text-2xl font-black text-secondary">Request a quote</h2>
+          <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100">Request a quote</h2>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
             Share your requirements and our team will respond within one business day.
           </p>
@@ -51,8 +51,8 @@ export default function ContactPage() {
       </div>
       <div className="mx-auto mt-10 w-full max-w-7xl px-4 sm:px-6">
         <div className="min-h-72 rounded-lg border border-border bg-muted p-8">
-          <p className="text-sm font-bold text-secondary">Google Map Placeholder</p>
-          <p className="mt-2 text-slate-600 dark:text-slate-300">
+          <p className="text-sm font-bold text-gray-900 dark:text-gray-100">Google Map Placeholder</p>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">
             Embed the verified Google Maps iframe for Kolkata, West Bengal, India here after Maps
             API or embed approval.
           </p>
