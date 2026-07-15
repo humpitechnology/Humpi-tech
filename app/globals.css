@@ -59,6 +59,25 @@ body {
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
+a,
+button,
+input,
+textarea,
+select {
+  outline-color: var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 ::selection {
   background: #0057ff;
   color: #ffffff;

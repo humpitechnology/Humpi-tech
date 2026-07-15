@@ -16,15 +16,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/88 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center" aria-label="Humpi Technology home">
-          <Image
-            src="/logo/icon.svg"
-            alt=""
-            width={52}
-            height={52}
-            priority
-          />
+          <Image src="/logo/icon.svg" alt="" width={52} height={52} priority />
           <span className="ml-3 leading-tight">
-            <span className="block text-base font-black text-gray-900 dark:text-gray-100">Humpi</span>
+            <span className="block text-base font-black text-primary">Humpi</span>
             <span className="block text-sm font-black text-primary">Technology</span>
           </span>
         </Link>
@@ -34,7 +28,7 @@ export default function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold text-gray-600 transition hover:text-primary dark:text-gray-300"
+              className="rounded-sm text-sm font-semibold text-gray-600 transition hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:text-gray-300"
             >
               {item.label}
             </Link>
@@ -46,14 +40,14 @@ export default function Navbar() {
             type="button"
             aria-label="Toggle dark mode"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card transition hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <Sun className="size-4 dark:hidden" />
             <Moon className="hidden size-4 dark:block" />
           </button>
           <Link
             href="/contact"
-            className="hidden rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 sm:inline-flex"
+            className="hidden rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:inline-flex"
           >
             Request Quote
           </Link>
@@ -61,7 +55,7 @@ export default function Navbar() {
             type="button"
             aria-label="Open navigation menu"
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card lg:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card transition hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -80,7 +74,7 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-muted dark:text-slate-200"
+              className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:text-slate-200"
             >
               {item.label}
             </Link>

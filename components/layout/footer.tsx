@@ -16,15 +16,17 @@ export default function Footer() {
             width={210}
             height={58}
           />
-          <p className="mt-5 max-w-sm text-sm leading-6 text-gray-600 dark:text-gray-300">
-            {company.description}
-          </p>
+          <p className="mt-5 max-w-sm text-sm leading-6 text-slate-300">{company.description}</p>
         </div>
         <div>
           <h2 className="text-sm font-bold uppercase tracking-wide">Company</h2>
           <div className="mt-4 grid gap-3">
             {navigation.slice(1, 8).map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm text-gray-600 hover:text-white">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-slate-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
                 {item.label}
               </Link>
             ))}
@@ -37,7 +39,7 @@ export default function Footer() {
               <Link
                 key={service.slug}
                 href="/services"
-                className="text-sm text-gray-600 hover:text-white"
+                className="text-sm text-slate-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {service.title}
               </Link>
@@ -46,11 +48,17 @@ export default function Footer() {
         </div>
         <div>
           <h2 className="text-sm font-bold uppercase tracking-wide">Contact</h2>
-          <div className="mt-4 grid gap-3 text-sm text-gray-600">
-            <a className="flex gap-2 hover:text-white" href={`mailto:${company.email}`}>
+          <div className="mt-4 grid gap-3 text-sm text-slate-300">
+            <a
+              className="flex gap-2 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              href={`mailto:${company.email}`}
+            >
               <Mail className="mt-0.5 size-4" /> {company.email}
             </a>
-            <a className="flex gap-2 hover:text-white" href={`tel:${company.phone}`}>
+            <a
+              className="flex gap-2 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              href={`tel:${company.phone}`}
+            >
               <Phone className="mt-0.5 size-4" /> {company.phone}
             </a>
             <p className="flex gap-2">
@@ -60,11 +68,15 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} Humpi Technology. All rights reserved.</p>
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+          <p>&copy; {new Date().getFullYear()} Humpi Technology. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white">Terms</Link>
+            <Link href="/privacy-policy" className="hover:text-white">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

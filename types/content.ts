@@ -48,6 +48,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
+  image: string;
   date: string;
   category: string;
   author: string;

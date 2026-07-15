@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Download, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, Star } from "lucide-react";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -13,7 +13,7 @@ import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
 import { testimonials } from "@/data/testimonials";
 import { ServiceCard } from "@/components/sections/service-card";
-import { Reveal } from "@/components/sections/motion";
+import { AnimatedStat, FloatingIcon, MotionCard, Reveal } from "@/components/sections/motion";
 
 export function HomePage() {
   return (
@@ -21,12 +21,15 @@ export function HomePage() {
       <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe,transparent_34%),linear-gradient(135deg,#ffffff_0%,#f8fafc_45%,#ecfeff_100%)] dark:bg-[radial-gradient(circle_at_top_left,#0f3a8a,transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_100%)]">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,87,255,0.08)_1px,transparent_1px),linear-gradient(rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:48px_48px]" />
         <div className="relative mx-auto grid min-h-[calc(100vh-80px)] w-full max-w-7xl min-w-0 items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <FloatingIcon className="absolute right-[8%] top-28 hidden text-primary/30 lg:block">
+            <Sparkles className="size-12" />
+          </FloatingIcon>
           <Reveal className="min-w-0">
             <Badge>Trusted technology partner from Kolkata</Badge>
-            <h1 className="mt-6 max-w-full break-words text-3xl font-black leading-tight tracking-tight text-white sm:max-w-4xl sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-full break-words text-3xl font-black leading-tight tracking-tight text-[#111827] dark:text-white sm:max-w-4xl sm:text-6xl lg:text-7xl">
               Build smarter software, automate faster, and grow with confidence.
             </h1>
-            <p className="mt-6 max-w-full text-lg leading-8 text-slate-100 sm:max-w-2xl">
+            <p className="mt-6 max-w-full text-lg leading-8 text-[#4B5563] dark:text-slate-200 sm:max-w-2xl">
               {company.name} delivers enterprise-grade software development, websites, mobile apps,
               CRM solutions, digital marketing, BPO, and promotional campaign support for ambitious
               teams.
@@ -38,12 +41,6 @@ export function HomePage() {
               >
                 Request Quote <ArrowRight className="ml-2 size-4" />
               </Link>
-              <a
-                href="/company-profile.pdf"
-                className="inline-flex min-h-11 items-center rounded-md border border-border bg-card px-5 text-sm font-bold text-gray-900 dark:text-gray-100 hover:border-primary hover:text-primary"
-              >
-                <Download className="mr-2 size-4" /> Company Profile
-              </a>
             </div>
           </Reveal>
           <Reveal className="glass w-full min-w-0 overflow-hidden rounded-lg border border-white/60 p-5 shadow-2xl shadow-blue-950/10 dark:border-white/10">
@@ -57,7 +54,9 @@ export function HomePage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 {stats.map((stat) => (
                   <div key={stat.label} className="min-w-0 rounded-lg bg-card p-5">
-                    <p className="text-3xl font-black text-primary">{stat.value}</p>
+                    <p className="text-3xl font-black text-primary">
+                      <AnimatedStat value={stat.value} />
+                    </p>
                     <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
                   </div>
                 ))}
@@ -74,15 +73,16 @@ export function HomePage() {
         <div className="grid gap-4 md:grid-cols-3">
           {values.map((value) => (
             <Reveal key={value}>
-              <Card className="flex h-full items-start gap-3 border-slate-200 bg-slate-50 text-slate-950 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-black/10">
-                <CheckCircle2 className="mt-1 size-5 text-accent" />
-                <p className="font-semibold">{value}</p>
-              </Card>
+              <MotionCard className="h-full">
+                <Card className="flex h-full items-start gap-3 border-slate-200 bg-slate-50 text-slate-950 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-black/10">
+                  <CheckCircle2 className="mt-1 size-5 text-accent" />
+                  <p className="font-semibold">{value}</p>
+                </Card>
+              </MotionCard>
             </Reveal>
           ))}
         </div>
       </Section>
-
 
       <Section
         eyebrow="Services"
@@ -127,12 +127,12 @@ export function HomePage() {
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {industries.map((industry) => (
-            <Card key={industry.slug} className="p-5">
-              <h3 className="font-bold text-[#1F2937]">{industry.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#4B5563]">
-                {industry.description}
-              </p>
-            </Card>
+            <MotionCard key={industry.slug} className="h-full">
+              <Card className="h-full p-5">
+                <h3 className="font-bold text-[#1F2937]">{industry.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#4B5563]">{industry.description}</p>
+              </Card>
+            </MotionCard>
           ))}
         </div>
       </Section>
@@ -146,22 +146,22 @@ export function HomePage() {
       >
         <div className="grid gap-5 md:grid-cols-3">
           {portfolio.map((project) => (
-            <Card key={project.slug} className="overflow-hidden p-0">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={960}
-                height={640}
-                className="aspect-[4/3] w-full object-cover"
-              />
-              <div className="p-5">
-                <p className="text-sm font-semibold text-primary">{project.category}</p>
-                <h3 className="mt-2 text-xl font-bold text-[#1F2937]">{project.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#4B5563]">
-                  {project.description}
-                </p>
-              </div>
-            </Card>
+            <MotionCard key={project.slug} className="h-full">
+              <Card className="h-full overflow-hidden p-0">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={960}
+                  height={640}
+                  className="aspect-[4/3] w-full object-cover"
+                />
+                <div className="p-5">
+                  <p className="text-sm font-semibold text-primary">{project.category}</p>
+                  <h3 className="mt-2 text-xl font-bold text-[#1F2937]">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#4B5563]">{project.description}</p>
+                </div>
+              </Card>
+            </MotionCard>
           ))}
         </div>
       </Section>
@@ -175,31 +175,31 @@ export function HomePage() {
       >
         <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item) => (
-            <Card key={item.name}>
-              <div className="flex gap-1 text-yellow-400">
-                {Array.from({ length: item.rating }).map((_, index) => (
-                  <Star key={index} className="size-4 fill-current" />
-                ))}
-              </div>
-              <p className="mt-4 text-sm leading-6 text-[#4B5563]">
-                &ldquo;{item.review}&rdquo;
-              </p>
-              <div className="mt-5 flex items-center gap-3">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={44}
-                  height={44}
-                  className="rounded-full"
-                />
-                <div>
-                  <p className="font-bold text-[#1F2937]">{item.name}</p>
-                  <p className="text-sm text-[#6B7280]">
-                    {item.designation}, {item.company}
-                  </p>
+            <MotionCard key={item.name} className="h-full">
+              <Card className="h-full">
+                <div className="flex gap-1 text-yellow-400">
+                  {Array.from({ length: item.rating }).map((_, index) => (
+                    <Star key={index} className="size-4 fill-current" />
+                  ))}
                 </div>
-              </div>
-            </Card>
+                <p className="mt-4 text-sm leading-6 text-[#4B5563]">&ldquo;{item.review}&rdquo;</p>
+                <div className="mt-5 flex items-center gap-3">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={44}
+                    height={44}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="font-bold text-[#1F2937]">{item.name}</p>
+                    <p className="text-sm text-[#6B7280]">
+                      {item.designation}, {item.company}
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </MotionCard>
           ))}
         </div>
       </Section>
@@ -214,9 +214,7 @@ export function HomePage() {
           {faqs.map((faq) => (
             <Card key={faq.question}>
               <h3 className="font-bold text-[#1F2937]">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#4B5563]">
-                {faq.answer}
-              </p>
+              <p className="mt-3 text-sm leading-6 text-[#4B5563]">{faq.answer}</p>
             </Card>
           ))}
         </div>
@@ -232,13 +230,13 @@ export function HomePage() {
         <div className="grid gap-5 md:grid-cols-3">
           {blogs.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <Card className="h-full transition hover:-translate-y-1 hover:border-primary/40">
-                <p className="text-sm font-semibold text-primary">{post.category}</p>
-                <h3 className="mt-3 text-xl font-bold text-[#1F2937]">{post.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#4B5563]">
-                  {post.excerpt}
-                </p>
-              </Card>
+              <MotionCard className="h-full">
+                <Card className="h-full transition hover:border-primary/40">
+                  <p className="text-sm font-semibold text-primary">{post.category}</p>
+                  <h3 className="mt-3 text-xl font-bold text-[#1F2937]">{post.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#4B5563]">{post.excerpt}</p>
+                </Card>
+              </MotionCard>
             </Link>
           ))}
         </div>

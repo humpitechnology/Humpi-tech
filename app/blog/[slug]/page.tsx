@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { blogs } from "@/data/blogs";
@@ -9,7 +10,11 @@ export function generateStaticParams() {
   return blogs.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = blogs.find((item) => item.slug === slug);
   if (!post) return {};
@@ -48,14 +53,33 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <article className="section-padding">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
-        <p className="text-sm font-bold text-primary">{post.category} · {post.readTime}</p>
-        <h1 className="mt-4 text-4xl font-black text-gray-900 dark:text-gray-100 sm:text-5xl">{post.title}</h1>
-        <p className="mt-4 text-slate-500">{post.date} · {post.author}</p>
+        <p className="text-sm font-bold text-primary">
+          {post.category} / {post.readTime}
+        </p>
+        <h1 className="mt-4 text-4xl font-black text-gray-900 dark:text-gray-100 sm:text-5xl">
+          {post.title}
+        </h1>
+        <p className="mt-4 text-slate-500">
+          {post.date} / {post.author}
+        </p>
+        <Image
+          src={post.image}
+          alt={post.title}
+          width={1200}
+          height={675}
+          className="mt-8 aspect-[16/9] w-full rounded-lg object-cover"
+          priority
+        />
         <Card className="mt-10 grid gap-5">
           {post.content.map((paragraph) => (
-            <p key={paragraph} className="text-lg leading-8 text-slate-700 dark:text-slate-300">{paragraph}</p>
+            <p key={paragraph} className="text-lg leading-8 text-slate-700 dark:text-slate-300">
+              {paragraph}
+            </p>
           ))}
         </Card>
       </div>
