@@ -74,7 +74,7 @@ export function HomePage() {
         <div className="grid gap-4 md:grid-cols-3">
           {values.map((value) => (
             <Reveal key={value}>
-              <Card className="flex h-full items-start gap-3 border-slate-200 bg-muted text-gray-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-gray-100 dark:shadow-black/10">
+              <Card className="flex h-full items-start gap-3 border-slate-200 bg-slate-50 text-slate-950 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-black/10">
                 <CheckCircle2 className="mt-1 size-5 text-accent" />
                 <p className="font-semibold">{value}</p>
               </Card>
@@ -83,10 +83,13 @@ export function HomePage() {
         </div>
       </Section>
 
+
       <Section
         eyebrow="Services"
         title="Full-cycle digital services for modern businesses."
         action="/services"
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((service) => (
@@ -97,12 +100,17 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section eyebrow="Technology" title="Built with modern, scalable, and maintainable tools.">
+      <Section
+        eyebrow="Technology"
+        title="Built with modern, scalable, and maintainable tools."
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
+      >
         <div className="flex flex-wrap gap-3">
           {technologies.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200"
+              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-[#374151]"
             >
               {tech}
             </span>
@@ -114,12 +122,14 @@ export function HomePage() {
         eyebrow="Industries"
         title="Domain-aware solutions for teams across sectors."
         action="/industries"
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {industries.map((industry) => (
             <Card key={industry.slug} className="p-5">
-              <h3 className="font-bold text-gray-900 dark:text-gray-100">{industry.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
+              <h3 className="font-bold text-[#1F2937]">{industry.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-[#4B5563]">
                 {industry.description}
               </p>
             </Card>
@@ -131,6 +141,8 @@ export function HomePage() {
         eyebrow="Portfolio"
         title="Selected work examples and solution patterns."
         action="/portfolio"
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {portfolio.map((project) => (
@@ -144,8 +156,8 @@ export function HomePage() {
               />
               <div className="p-5">
                 <p className="text-sm font-semibold text-primary">{project.category}</p>
-                <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">{project.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                <h3 className="mt-2 text-xl font-bold text-[#1F2937]">{project.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#4B5563]">
                   {project.description}
                 </p>
               </div>
@@ -158,6 +170,8 @@ export function HomePage() {
         eyebrow="Client reviews"
         title="Teams value our clarity, speed, and practical execution."
         action="/testimonials"
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item) => (
@@ -167,7 +181,7 @@ export function HomePage() {
                   <Star key={index} className="size-4 fill-current" />
                 ))}
               </div>
-              <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-gray-300">
+              <p className="mt-4 text-sm leading-6 text-[#4B5563]">
                 &ldquo;{item.review}&rdquo;
               </p>
               <div className="mt-5 flex items-center gap-3">
@@ -179,8 +193,8 @@ export function HomePage() {
                   className="rounded-full"
                 />
                 <div>
-                  <p className="font-bold text-gray-900 dark:text-gray-100">{item.name}</p>
-                  <p className="text-sm text-slate-500">
+                  <p className="font-bold text-[#1F2937]">{item.name}</p>
+                  <p className="text-sm text-[#6B7280]">
                     {item.designation}, {item.company}
                   </p>
                 </div>
@@ -190,12 +204,17 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section eyebrow="FAQs" title="Clear answers before the first call.">
+      <Section
+        eyebrow="FAQs"
+        title="Clear answers before the first call."
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {faqs.map((faq) => (
             <Card key={faq.question}>
-              <h3 className="font-bold text-gray-900 dark:text-gray-100">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+              <h3 className="font-bold text-[#1F2937]">{faq.question}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#4B5563]">
                 {faq.answer}
               </p>
             </Card>
@@ -207,14 +226,16 @@ export function HomePage() {
         eyebrow="Latest blogs"
         title="Insights on software, QA, SEO, and automation."
         action="/blog"
+        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
+        titleClassName="text-[#111827]"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {blogs.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="h-full transition hover:-translate-y-1 hover:border-primary/40">
                 <p className="text-sm font-semibold text-primary">{post.category}</p>
-                <h3 className="mt-3 text-xl font-bold text-gray-900 dark:text-gray-100">{post.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                <h3 className="mt-3 text-xl font-bold text-[#1F2937]">{post.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#4B5563]">
                   {post.excerpt}
                 </p>
               </Card>
@@ -230,7 +251,7 @@ export function HomePage() {
             <h2 className="mt-3 text-4xl font-black">
               Ready to modernize your digital operations?
             </h2>
-            <p className="mt-4 text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-gray-100">
               Talk to Humpi Technology about your website, mobile app, CRM, digital marketing, BPO,
               or growth needs.
             </p>
@@ -247,19 +268,25 @@ function Section({
   title,
   children,
   action,
+  badgeClassName,
+  titleClassName,
 }: {
   eyebrow: string;
   title: string;
   children: React.ReactNode;
   action?: string;
+  badgeClassName?: string;
+  titleClassName?: string;
 }) {
   return (
     <section className="section-padding">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <Badge>{eyebrow}</Badge>
-            <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
+            <Badge className={badgeClassName}>{eyebrow}</Badge>
+            <h2
+              className={`mt-4 max-w-3xl text-3xl font-black tracking-tight text-gray-900 sm:text-4xl ${titleClassName ?? ""}`}
+            >
               {title}
             </h2>
           </div>

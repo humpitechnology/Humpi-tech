@@ -12,13 +12,13 @@ export function ServiceCard({ service }: { service: Service }) {
       <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-white">
         <Icon className="size-6" />
       </div>
-      <h2 className="mt-5 text-xl font-bold text-gray-900 dark:text-gray-100">{service.title}</h2>
-      <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
+      <h2 className="mt-5 text-xl font-bold text-[#1F2937]">{service.title}</h2>
+      <p className="mt-3 text-sm leading-6 text-[#4B5563]">
         {service.description}
       </p>
       <ul className="mt-5 grid gap-2">
         {service.features.slice(0, 3).map((feature) => (
-          <li key={feature} className="flex gap-2 text-sm text-gray-700 dark:text-gray-300">
+          <li key={feature} className="flex gap-2 text-sm text-[#374151]">
             <CheckCircle2 className="mt-0.5 size-4 text-accent" />
             {feature}
           </li>
@@ -26,7 +26,7 @@ export function ServiceCard({ service }: { service: Service }) {
       </ul>
       <Link
         href="/contact"
-        className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary"
+        className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#2563EB] hover:text-[#1D4ED8]"
       >
         Discuss this service <ArrowRight className="size-4 transition group-hover:translate-x-1" />
       </Link>
