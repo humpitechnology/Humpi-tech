@@ -70,14 +70,13 @@ Copy `.env.example` to `.env.local` and fill values when integrations are enable
 
 ### Request a Quote Backend
 
-The contact page posts quote requests to `POST /api/request-quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, appended to Google Sheets, and then sent through SMTP email notifications.
+The contact page posts quote requests to `POST /api/quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, stored in MongoDB Atlas, and then sent through SMTP email notifications.
 
 Required variables:
 
 ```env
-GOOGLE_SHEET_ID=
-GOOGLE_CLIENT_EMAIL=
-GOOGLE_PRIVATE_KEY=
+MONGODB_URI=
+MONGODB_DB=
 SMTP_HOST=
 SMTP_PORT=
 SMTP_USER=
@@ -85,13 +84,12 @@ SMTP_PASSWORD=
 SALES_EMAIL=admin@humpitechnology.in
 ```
 
-Google Sheets setup:
+MongoDB Atlas setup:
 
-1. Create a Google Cloud service account with Google Sheets API access.
-2. Share the target spreadsheet with `GOOGLE_CLIENT_EMAIL` as an editor.
-3. Add a header row with: `Timestamp`, `Name`, `Email`, `Phone`, `Service`, `Project Details`, `IP Address`.
-4. Put the spreadsheet ID in `GOOGLE_SHEET_ID`.
-5. Store the private key in `GOOGLE_PRIVATE_KEY`; escaped newlines such as `\n` are supported.
+1. Create or choose a MongoDB Atlas cluster.
+2. Add the connection string to `MONGODB_URI`.
+3. Optionally set `MONGODB_DB` when the database name is not included in the connection string.
+4. Submit a test quote and confirm a document is created in the `quotes` collection.
 
 Email setup:
 
@@ -103,9 +101,9 @@ End-to-end test checklist:
 
 - Required fields show validation errors before submission.
 - International phone numbers such as `+91 7477234777` are accepted.
-- More than 3000 project detail characters are rejected.
+- More than 3000 message characters are rejected.
 - A successful submission clears the form and shows the success toast.
-- The Google Sheet receives a new row with timestamp, quote fields, and IP address.
+- MongoDB Atlas receives a new quote document with status `New`.
 - `SALES_EMAIL` receives the `New Quote Request` email.
 - The customer receives the `Thank you for contacting Humpi Technologies` email.
 - A repeat submission from the same email within 5 minutes returns a friendly failure.

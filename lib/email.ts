@@ -32,7 +32,7 @@ function getTransporter() {
 export async function sendQuoteEmails(submission: QuoteSubmission) {
   const transporter = getTransporter();
   const salesEmail = process.env.SALES_EMAIL || DEFAULT_SALES_EMAIL;
-  const submittedTime = submission.submittedAt.toLocaleString("en-IN", {
+  const submittedTime = submission.createdAt.toLocaleString("en-IN", {
     dateStyle: "medium",
     timeStyle: "short",
     timeZone: "Asia/Kolkata",
@@ -43,11 +43,11 @@ export async function sendQuoteEmails(submission: QuoteSubmission) {
     to: salesEmail,
     subject: "New Quote Request",
     text: [
-      `Name: ${submission.name}`,
+      `Name: ${submission.fullName}`,
       `Email: ${submission.email}`,
       `Phone: ${submission.phone}`,
       `Service: ${submission.service}`,
-      `Project Details: ${submission.projectDetails}`,
+      `Project Goals / Timeline / Budget: ${submission.message}`,
       `Submitted Time: ${submittedTime}`,
     ].join("\n"),
   });

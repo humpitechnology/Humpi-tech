@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendQuoteEmails } from "@/lib/email";
-import { appendQuoteSubmission } from "@/lib/googleSheets";
+import { connectToDatabase, Quote } from "@/lib/mongodb";
 import { validateAndSanitizeQuoteRequest } from "@/lib/validation";
 import type { QuoteSubmission } from "@/types/quote";
 
@@ -12,6 +12,10 @@ const DUPLICATE_WINDOW_MS = 5 * 60 * 1000;
 
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 const duplicateEmailStore = new Map<string, number>();
+
+function jsonResponse(message: string, status: number, success = false) {
+  return NextResponse.json({ success, message }, { status });
+}
 
 function getClientIp(request: NextRequest) {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -49,8 +53,7 @@ function hasRecentSubmission(email: string) {
 }
 
 function markSubmission(email: string) {
-  const now = Date.now();
-  duplicateEmailStore.set(email, now);
+  duplicateEmailStore.set(email, Date.now());
 }
 
 export async function POST(request: NextRequest) {
@@ -58,50 +61,65 @@ export async function POST(request: NextRequest) {
 
   try {
     if (isRateLimited(ipAddress)) {
-      return NextResponse.json(
-        { success: false, message: "Too many requests. Please try again later." },
-        { status: 429 },
-      );
+      return jsonResponse("Too many requests. Please try again later.", 429);
     }
 
-    const payload = await request.json();
+    let payload: unknown;
+
+    try {
+      payload = await request.json();
+    } catch {
+      return jsonResponse("Invalid JSON payload.", 400);
+    }
+
     const validation = validateAndSanitizeQuoteRequest(payload);
 
     if (!validation.success) {
       return NextResponse.json(
-        { success: false, message: "Invalid request.", errors: validation.errors },
+        { success: false, message: "Validation failed.", errors: validation.errors },
         { status: 400 },
       );
     }
 
     if (validation.honeypot) {
-      return NextResponse.json({ success: true });
-    }
-
-    if (hasRecentSubmission(validation.data.email)) {
       return NextResponse.json(
-        { success: false, message: "A request was already submitted recently." },
-        { status: 409 },
+        { success: true, message: "Quote submitted successfully." },
+        { status: 200 },
       );
     }
 
+    if (hasRecentSubmission(validation.data.email)) {
+      return jsonResponse("A quote request was already submitted recently.", 409);
+    }
+
+    await connectToDatabase();
+
+    const quote = await Quote.create({
+      ...validation.data,
+      status: "New",
+      ipAddress,
+    });
+
+    markSubmission(validation.data.email);
+
     const submission: QuoteSubmission = {
       ...validation.data,
+      status: quote.status,
       ipAddress,
-      submittedAt: new Date(),
+      createdAt: quote.createdAt,
     };
 
-    await appendQuoteSubmission(submission);
-    markSubmission(validation.data.email);
-    await sendQuoteEmails(submission);
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Request quote submission failed", error);
+    sendQuoteEmails(submission).catch((error: unknown) => {
+      console.error("Quote email notification failed", error);
+    });
 
     return NextResponse.json(
-      { success: false, message: "Something went wrong. Please try again." },
-      { status: 500 },
+      { success: true, message: "Quote submitted successfully." },
+      { status: 201 },
     );
+  } catch (error) {
+    console.error("Quote submission failed", error);
+
+    return jsonResponse("Something went wrong. Please try again.", 500);
   }
 }

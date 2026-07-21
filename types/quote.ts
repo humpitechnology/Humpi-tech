@@ -1,21 +1,22 @@
 export type QuoteRequestInput = {
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
   service: string;
-  projectDetails: string;
+  message: string;
   website?: string;
 };
 
 export type SanitizedQuoteRequest = {
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
   service: string;
-  projectDetails: string;
+  message: string;
 };
 
 export type QuoteSubmission = SanitizedQuoteRequest & {
+  status: "New" | string;
   ipAddress: string;
-  submittedAt: Date;
+  createdAt: Date;
 };

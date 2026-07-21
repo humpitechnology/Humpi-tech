@@ -17,12 +17,17 @@ export function ContactForm() {
   } = useForm<QuoteRequestFormInput>({
     resolver: zodResolver(quoteRequestSchema),
     defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      service: "",
+      message: "",
       website: "",
     },
   });
 
   async function onSubmit(values: QuoteRequestFormInput) {
-    const response = await fetch("/api/request-quote", {
+    const response = await fetch("/api/quote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,43 +35,44 @@ export function ContactForm() {
       body: JSON.stringify(values),
     });
 
+    const result = (await response.json().catch(() => null)) as { message?: string } | null;
+
     if (!response.ok) {
-      toast.error("Something went wrong.", {
-        description: "Please try again.",
+      toast.error(result?.message || "Something went wrong.", {
+        description: "Please review the form and try again.",
       });
       return;
     }
 
     reset();
     toast.success("Thank you!", {
-      description:
-        "Your quotation request has been submitted successfully. Our team will contact you shortly.",
+      description: result?.message || "Your quotation request has been submitted successfully.",
     });
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field error={errors.name?.message}>
-          <Input placeholder="Full name" {...register("name")} />
+        <Field error={errors.fullName?.message}>
+          <Input placeholder="Full name" autoComplete="name" {...register("fullName")} />
         </Field>
         <Field error={errors.email?.message}>
-          <Input type="email" placeholder="Email address" {...register("email")} />
+          <Input type="email" placeholder="Email address" autoComplete="email" {...register("email")} />
         </Field>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field error={errors.phone?.message}>
-          <Input placeholder="Phone number" {...register("phone")} />
+          <Input placeholder="Phone number" autoComplete="tel" {...register("phone")} />
         </Field>
         <Field error={errors.service?.message}>
           <Input placeholder="Service required" {...register("service")} />
         </Field>
       </div>
-      <Field error={errors.projectDetails?.message}>
+      <Field error={errors.message?.message}>
         <Textarea
           maxLength={3000}
           placeholder="Project goals, timeline, and budget range"
-          {...register("projectDetails")}
+          {...register("message")}
         />
       </Field>
       <input
@@ -83,7 +89,7 @@ export function ContactForm() {
         </p>
       ) : null}
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? "Submitting..." : "Request Quote"}
       </Button>
     </form>
   );

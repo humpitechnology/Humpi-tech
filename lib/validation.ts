@@ -4,15 +4,15 @@ import type { QuoteRequestInput, SanitizedQuoteRequest } from "@/types/quote";
 const phoneRegex = /^\+?[0-9\s().-]{7,20}$/;
 
 export const quoteRequestSchema = z.object({
-  name: z.string().trim().min(3, "Name must be at least 3 characters"),
+  fullName: z.string().trim().min(3, "Full name must be at least 3 characters"),
   email: z.string().trim().email("Enter a valid email address"),
   phone: z.string().trim().regex(phoneRegex, "Enter a valid phone number"),
   service: z.string().trim().min(1, "Service is required"),
-  projectDetails: z
+  message: z
     .string()
     .trim()
-    .min(1, "Project details are required")
-    .max(3000, "Project details must be 3000 characters or fewer"),
+    .min(1, "Project goals, timeline, and budget are required")
+    .max(3000, "Project goals, timeline, and budget must be 3000 characters or fewer"),
   website: z.string().optional(),
 });
 
@@ -55,11 +55,11 @@ export function validateAndSanitizeQuoteRequest(
       success: true,
       honeypot: true,
       data: {
-        name: "",
+        fullName: "",
         email: "",
         phone: "",
         service: "",
-        projectDetails: "",
+        message: "",
       },
     };
   }
@@ -74,16 +74,24 @@ export function validateAndSanitizeQuoteRequest(
   }
 
   const data: QuoteRequestInput = result.data;
+  const sanitizedData = {
+    fullName: sanitizeText(data.fullName),
+    email: data.email.trim().toLowerCase(),
+    phone: sanitizeText(data.phone),
+    service: sanitizeText(data.service),
+    message: sanitizeMultilineText(data.message),
+  };
+
+  if (Object.values(sanitizedData).some((value) => value.length === 0)) {
+    return {
+      success: false,
+      errors: ["All fields are required."],
+    };
+  }
 
   return {
     success: true,
     honeypot: false,
-    data: {
-      name: sanitizeText(data.name),
-      email: data.email.trim().toLowerCase(),
-      phone: sanitizeText(data.phone),
-      service: sanitizeText(data.service),
-      projectDetails: sanitizeMultilineText(data.projectDetails),
-    },
+    data: sanitizedData,
   };
 }
