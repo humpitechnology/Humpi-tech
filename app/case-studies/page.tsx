@@ -4,7 +4,6 @@ import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
 import { caseStudies } from "@/data/case-studies";
-
 export default function CaseStudiesPage() {
   return (
     <>
@@ -19,9 +18,7 @@ export default function CaseStudiesPage() {
             <Reveal key={study.slug}>
               <MotionCard className="h-full">
                 <Card className="h-full">
-                  <h2 className="text-2xl font-black text-gray-900 dark:text-gray-100">
-                    {study.title}
-                  </h2>
+                  <h2 className="text-2xl font-black text-heading"> {study.title} </h2>
                   <Info label="Business Challenge" value={study.problem} />
                   <Info label="Solution" value={study.solution} />
                   <h3 className="mt-5 text-sm font-bold uppercase tracking-wide text-primary">
@@ -31,7 +28,7 @@ export default function CaseStudiesPage() {
                     {study.technology.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-[#374151] dark:text-slate-200"
+                        className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-body"
                       >
                         {tech}
                       </span>
@@ -42,13 +39,13 @@ export default function CaseStudiesPage() {
                   </h3>
                   <ul className="mt-3 grid gap-2 text-sm">
                     {study.results.map((result) => (
-                      <li key={result} className="flex gap-2 text-[#374151] dark:text-slate-200">
+                      <li key={result} className="flex gap-2 text-body">
                         <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-accent" />
                         {result}
                       </li>
                     ))}
                   </ul>
-                  <blockquote className="mt-5 border-l-4 border-primary pl-4 text-sm font-semibold text-gray-900 dark:text-gray-100">
+                  <blockquote className="mt-5 border-l-4 border-primary pl-4 text-sm font-semibold text-heading">
                     &ldquo;{study.testimonial}&rdquo;
                   </blockquote>
                   <Link
@@ -66,12 +63,11 @@ export default function CaseStudiesPage() {
     </>
   );
 }
-
 function Info({ label, value }: { label: string; value: string }) {
   return (
     <div className="mt-5">
       <h3 className="text-sm font-bold uppercase tracking-wide text-primary">{label}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#4B5563] dark:text-slate-300">{value}</p>
+      <p className="mt-2 text-sm leading-6 text-body">{value}</p>
     </div>
   );
 }

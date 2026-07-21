@@ -14,22 +14,21 @@ import { technologies } from "@/data/technologies";
 import { testimonials } from "@/data/testimonials";
 import { ServiceCard } from "@/components/sections/service-card";
 import { AnimatedStat, FloatingIcon, MotionCard, Reveal } from "@/components/sections/motion";
-
 export function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_top_left,#dbeafe,transparent_34%),linear-gradient(135deg,#ffffff_0%,#f8fafc_45%,#ecfeff_100%)] dark:bg-[radial-gradient(circle_at_top_left,#0f3a8a,transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_100%)]">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,87,255,0.08)_1px,transparent_1px),linear-gradient(rgba(6,182,212,0.08)_1px,transparent_1px)] bg-[size:48px_48px]" />
+      <section className="relative overflow-hidden premium-hero">
+        <div className="absolute inset-0 premium-grid" />
         <div className="relative mx-auto grid min-h-[calc(100vh-80px)] w-full max-w-7xl min-w-0 items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr]">
           <FloatingIcon className="absolute right-[8%] top-28 hidden text-primary/30 lg:block">
             <Sparkles className="size-12" />
           </FloatingIcon>
           <Reveal className="min-w-0">
             <Badge>Trusted technology partner from Kolkata</Badge>
-            <h1 className="mt-6 max-w-full break-words text-3xl font-black leading-tight tracking-tight text-[#111827] dark:text-white sm:max-w-4xl sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-full break-words text-3xl font-black leading-tight tracking-tight text-heading  sm:max-w-4xl sm:text-6xl lg:text-7xl">
               Build smarter software, automate faster, and grow with confidence.
             </h1>
-            <p className="mt-6 max-w-full text-lg leading-8 text-[#4B5563] dark:text-slate-200 sm:max-w-2xl">
+            <p className="mt-6 max-w-full text-lg leading-8 text-body  sm:max-w-2xl">
               {company.name} delivers enterprise-grade software development, websites, mobile apps,
               CRM solutions, digital marketing, BPO, and promotional campaign support for ambitious
               teams.
@@ -37,16 +36,16 @@ export function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 text-sm font-bold text-white shadow-lg shadow-blue-500/20 hover:bg-blue-700"
+                className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-soft)] hover:bg-primary-hover"
               >
                 Request Quote <ArrowRight className="ml-2 size-4" />
               </Link>
             </div>
           </Reveal>
-          <Reveal className="glass w-full min-w-0 overflow-hidden rounded-lg border border-white/60 p-5 shadow-2xl shadow-blue-950/10 dark:border-white/10">
+          <Reveal className="glass w-full min-w-0 overflow-hidden rounded-lg border border-border p-5 shadow-[var(--shadow)] ">
             <div className="grid gap-4">
-              <div className="rounded-lg bg-secondary p-6 text-white">
-                <p className="text-sm text-gray-600 dark:text-gray-300">Delivery Command Center</p>
+              <div className="rounded-lg bg-secondary p-6 text-primary-foreground">
+                <p className="text-sm text-body">Delivery Command Center</p>
                 <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
                   Strategy to support, one partner.
                 </h2>
@@ -57,7 +56,7 @@ export function HomePage() {
                     <p className="text-3xl font-black text-primary">
                       <AnimatedStat value={stat.value} />
                     </p>
-                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{stat.label}</p>
+                    <p className="mt-1 text-sm text-body">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -65,7 +64,6 @@ export function HomePage() {
           </Reveal>
         </div>
       </section>
-
       <Section
         eyebrow="Why choose us"
         title="A practical technology partner for long-term digital growth."
@@ -74,7 +72,7 @@ export function HomePage() {
           {values.map((value) => (
             <Reveal key={value}>
               <MotionCard className="h-full">
-                <Card className="flex h-full items-start gap-3 border-slate-200 bg-slate-50 text-slate-950 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-white dark:shadow-black/10">
+                <Card className="flex h-full items-start gap-3 border-border bg-card text-heading shadow-[var(--shadow-soft)]  ">
                   <CheckCircle2 className="mt-1 size-5 text-accent" />
                   <p className="font-semibold">{value}</p>
                 </Card>
@@ -83,13 +81,12 @@ export function HomePage() {
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Services"
         title="Full-cycle digital services for modern businesses."
         action="/services"
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 6).map((service) => (
@@ -99,50 +96,47 @@ export function HomePage() {
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Technology"
         title="Built with modern, scalable, and maintainable tools."
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="flex flex-wrap gap-3">
           {technologies.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-[#374151]"
+              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-body"
             >
               {tech}
             </span>
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Industries"
         title="Domain-aware solutions for teams across sectors."
         action="/industries"
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {industries.map((industry) => (
             <MotionCard key={industry.slug} className="h-full">
               <Card className="h-full p-5">
-                <h3 className="font-bold text-[#1F2937]">{industry.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4B5563]">{industry.description}</p>
+                <h3 className="font-bold text-heading">{industry.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-body">{industry.description}</p>
               </Card>
             </MotionCard>
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Portfolio"
         title="Selected work examples and solution patterns."
         action="/portfolio"
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {portfolio.map((project) => (
@@ -157,32 +151,31 @@ export function HomePage() {
                 />
                 <div className="p-5">
                   <p className="text-sm font-semibold text-primary">{project.category}</p>
-                  <h3 className="mt-2 text-xl font-bold text-[#1F2937]">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#4B5563]">{project.description}</p>
+                  <h3 className="mt-2 text-xl font-bold text-heading">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-body">{project.description}</p>
                 </div>
               </Card>
             </MotionCard>
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Client reviews"
         title="Teams value our clarity, speed, and practical execution."
         action="/testimonials"
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item) => (
             <MotionCard key={item.name} className="h-full">
               <Card className="h-full">
-                <div className="flex gap-1 text-yellow-400">
+                <div className="flex gap-1 text-warning">
                   {Array.from({ length: item.rating }).map((_, index) => (
                     <Star key={index} className="size-4 fill-current" />
                   ))}
                 </div>
-                <p className="mt-4 text-sm leading-6 text-[#4B5563]">&ldquo;{item.review}&rdquo;</p>
+                <p className="mt-4 text-sm leading-6 text-body">&ldquo;{item.review}&rdquo;</p>
                 <div className="mt-5 flex items-center gap-3">
                   <Image
                     src={item.image}
@@ -192,8 +185,8 @@ export function HomePage() {
                     className="rounded-full"
                   />
                   <div>
-                    <p className="font-bold text-[#1F2937]">{item.name}</p>
-                    <p className="text-sm text-[#6B7280]">
+                    <p className="font-bold text-heading">{item.name}</p>
+                    <p className="text-sm text-muted-text">
                       {item.designation}, {item.company}
                     </p>
                   </div>
@@ -203,29 +196,27 @@ export function HomePage() {
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="FAQs"
         title="Clear answers before the first call."
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-4 md:grid-cols-2">
           {faqs.map((faq) => (
             <Card key={faq.question}>
-              <h3 className="font-bold text-[#1F2937]">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#4B5563]">{faq.answer}</p>
+              <h3 className="font-bold text-heading">{faq.question}</h3>
+              <p className="mt-3 text-sm leading-6 text-body">{faq.answer}</p>
             </Card>
           ))}
         </div>
       </Section>
-
       <Section
         eyebrow="Latest blogs"
         title="Insights on software, QA, SEO, and automation."
         action="/blog"
-        badgeClassName="border-blue-200 bg-[#1D4ED8] text-white"
-        titleClassName="text-[#111827]"
+        badgeClassName="border-primary/25 bg-primary-hover text-primary-foreground"
+        titleClassName="text-heading"
       >
         <div className="grid gap-5 md:grid-cols-3">
           {blogs.map((post) => (
@@ -233,23 +224,22 @@ export function HomePage() {
               <MotionCard className="h-full">
                 <Card className="h-full transition hover:border-primary/40">
                   <p className="text-sm font-semibold text-primary">{post.category}</p>
-                  <h3 className="mt-3 text-xl font-bold text-[#1F2937]">{post.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#4B5563]">{post.excerpt}</p>
+                  <h3 className="mt-3 text-xl font-bold text-heading">{post.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-body">{post.excerpt}</p>
                 </Card>
               </MotionCard>
             </Link>
           ))}
         </div>
       </Section>
-
-      <section className="bg-secondary text-white">
+      <section className="bg-secondary text-primary-foreground">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-accent">Contact CTA</p>
             <h2 className="mt-3 text-4xl font-black">
               Ready to modernize your digital operations?
             </h2>
-            <p className="mt-4 text-gray-100">
+            <p className="mt-4 text-body">
               Talk to Humpi Technology about your website, mobile app, CRM, digital marketing, BPO,
               or growth needs.
             </p>
@@ -260,7 +250,6 @@ export function HomePage() {
     </>
   );
 }
-
 function Section({
   eyebrow,
   title,
@@ -283,7 +272,7 @@ function Section({
           <div>
             <Badge className={badgeClassName}>{eyebrow}</Badge>
             <h2
-              className={`mt-4 max-w-3xl text-3xl font-black tracking-tight text-gray-900 sm:text-4xl ${titleClassName ?? ""}`}
+              className={`mt-4 max-w-3xl text-3xl font-black tracking-tight text-heading sm:text-4xl ${titleClassName ?? ""}`}
             >
               {title}
             </h2>

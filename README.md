@@ -100,7 +100,7 @@ Email setup:
 End-to-end test checklist:
 
 - Required fields show validation errors before submission.
-- International phone numbers such as `+91 7477234777` are accepted.
+- International phone numbers such as `+91 7031222466` are accepted.
 - More than 3000 message characters are rejected.
 - A successful submission clears the form and shows the success toast.
 - MongoDB Atlas receives a new quote document with status `New`.
@@ -134,5 +134,5 @@ Use `nginx.conf` as a reverse proxy example in front of `next start` or a Node p
 
 - Website: `https://humpitechnology.in`
 - Email: `admin@humpitechnology.in`
-- Phone: `+91 7477234777`
+- Phone: `+91 7031222466`
 - Location: Kolkata, West Bengal, India

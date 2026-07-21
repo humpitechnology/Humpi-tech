@@ -61,10 +61,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         <p className="text-sm font-bold text-primary">
           {post.category} / {post.readTime}
         </p>
-        <h1 className="mt-4 text-4xl font-black text-gray-900 dark:text-gray-100 sm:text-5xl">
-          {post.title}
-        </h1>
-        <p className="mt-4 text-slate-500">
+        <h1 className="mt-4 text-4xl font-black text-heading sm:text-5xl">{post.title}</h1>
+        <p className="mt-4 text-muted-text">
           {post.date} / {post.author}
         </p>
         <Image
@@ -77,7 +75,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         />
         <Card className="mt-10 grid gap-5">
           {post.content.map((paragraph) => (
-            <p key={paragraph} className="text-lg leading-8 text-slate-700 dark:text-slate-300">
+            <p key={paragraph} className="text-lg leading-8 text-body">
               {paragraph}
             </p>
           ))}

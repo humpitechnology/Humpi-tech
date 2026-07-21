@@ -1,24 +1,19 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     setVisible(localStorage.getItem("humpi-cookie-consent") !== "accepted");
   }, []);
-
   if (!visible) {
     return null;
   }
-
   return (
-    <div className="fixed bottom-5 left-5 z-50 max-w-md rounded-lg border border-border bg-card p-4 shadow-xl">
-      <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
-        We use essential cookies and analytics-ready hooks to improve website
-        performance and user experience.
+    <div className="fixed bottom-5 left-5 z-50 max-w-md rounded-lg border border-border bg-card p-4 shadow-[var(--shadow)]">
+      <p className="text-sm leading-6 text-body">
+        We use essential cookies and analytics-ready hooks to improve website performance and user
+        experience.
       </p>
       <Button
         className="mt-3"

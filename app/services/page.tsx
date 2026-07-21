@@ -1,7 +1,6 @@
 import { PageHeader } from "@/components/sections/page-header";
 import { ServiceCard } from "@/components/sections/service-card";
 import { services } from "@/data/services";
-
 export default function ServicesPage() {
   return (
     <>

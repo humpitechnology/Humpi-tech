@@ -6,10 +6,8 @@ import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
 import { blogs } from "@/data/blogs";
-
 export default function BlogPage() {
   const categories = Array.from(new Set(blogs.map((post) => post.category)));
-
   return (
     <>
       <PageHeader
@@ -37,12 +35,8 @@ export default function BlogPage() {
                         <p className="text-sm font-bold text-primary">
                           {post.category} / {post.date} / {post.readTime}
                         </p>
-                        <h2 className="mt-3 text-2xl font-black text-gray-900 dark:text-gray-100">
-                          {post.title}
-                        </h2>
-                        <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
-                          {post.excerpt}
-                        </p>
+                        <h2 className="mt-3 text-2xl font-black text-heading"> {post.title} </h2>
+                        <p className="mt-3 text-sm leading-6 text-body"> {post.excerpt} </p>
                         <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">
                           Read More <ArrowRight className="size-4" />
                         </span>
@@ -55,16 +49,16 @@ export default function BlogPage() {
           </div>
           <aside className="grid content-start gap-5">
             <Card>
-              <h2 className="font-bold text-gray-900 dark:text-gray-100">Search</h2>
+              <h2 className="font-bold text-heading">Search</h2>
               <Input className="mt-3" placeholder="Search articles" />
             </Card>
             <Card>
-              <h2 className="font-bold text-gray-900 dark:text-gray-100">Categories</h2>
+              <h2 className="font-bold text-heading">Categories</h2>
               <div className="mt-3 flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <span
                     key={category}
-                    className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-[#374151] dark:text-slate-200"
+                    className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-body"
                   >
                     {category}
                   </span>
@@ -72,7 +66,7 @@ export default function BlogPage() {
               </div>
             </Card>
             <Card>
-              <h2 className="font-bold text-gray-900 dark:text-gray-100">Recent posts</h2>
+              <h2 className="font-bold text-heading">Recent posts</h2>
               <div className="mt-3 grid gap-3">
                 {blogs.slice(0, 3).map((post) => (
                   <Link

@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
 import { portfolio } from "@/data/portfolio";
-
 export default function PortfolioPage() {
   return (
     <>
@@ -30,27 +29,23 @@ export default function PortfolioPage() {
                   />
                   <div className="p-6">
                     <p className="text-sm font-bold text-primary">{project.category}</p>
-                    <h2 className="mt-2 text-2xl font-black text-gray-900 dark:text-gray-100">
-                      {project.title}
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-300">
-                      {project.description}
-                    </p>
+                    <h2 className="mt-2 text-2xl font-black text-heading"> {project.title} </h2>
+                    <p className="mt-3 text-sm leading-6 text-body"> {project.description} </p>
                     <dl className="mt-5 grid gap-2 text-sm">
                       <div>
-                        <dt className="font-bold text-gray-900 dark:text-gray-100">Client</dt>
-                        <dd className="text-gray-600 dark:text-gray-300">{project.client}</dd>
+                        <dt className="font-bold text-heading">Client</dt>
+                        <dd className="text-body">{project.client}</dd>
                       </div>
                       <div>
-                        <dt className="font-bold text-gray-900 dark:text-gray-100">Duration</dt>
-                        <dd className="text-gray-600 dark:text-gray-300">{project.duration}</dd>
+                        <dt className="font-bold text-heading">Duration</dt>
+                        <dd className="text-body">{project.duration}</dd>
                       </div>
                     </dl>
                     <div className="mt-5 flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-[#374151] dark:text-slate-200"
+                          className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-body"
                         >
                           {tech}
                         </span>
@@ -58,7 +53,7 @@ export default function PortfolioPage() {
                     </div>
                     <Link
                       href="/contact"
-                      className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-bold text-white transition hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       View Project <ArrowRight className="size-4" />
                     </Link>

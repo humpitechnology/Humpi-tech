@@ -17,7 +17,6 @@ import {
   Workflow,
 } from "lucide-react";
 import type { IconName } from "@/types/content";
-
 export const iconMap = {
   bot: Bot,
   briefcase: BriefcaseBusiness,

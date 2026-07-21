@@ -10,12 +10,7 @@ import { ScrollProgress } from "@/components/sections/motion";
 import { company } from "@/data/company";
 import { siteUrl } from "@/lib/utils";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -33,9 +28,7 @@ export const metadata: Metadata = {
     "SEO services",
     "BPO Kolkata",
   ],
-  alternates: {
-    canonical: siteUrl,
-  },
+  alternates: { canonical: siteUrl },
   openGraph: {
     title: company.name,
     description: company.description,
@@ -51,23 +44,10 @@ export const metadata: Metadata = {
     description: company.description,
     images: ["/logo/icon.svg"],
   },
-  icons: {
-    icon: "/logo/icon.svg",
-    shortcut: "/favicon.ico",
-    apple: "/logo/icon.svg",
-  },
+  icons: { icon: "/logo/icon.svg", shortcut: "/favicon.ico", apple: "/logo/icon.svg" },
 };
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -83,7 +63,6 @@ export default function RootLayout({
     },
     sameAs: [company.website],
   };
-
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full bg-background text-foreground">
@@ -94,13 +73,9 @@ export default function RootLayout({
         <ThemeProvider>
           <ScrollProgress />
           <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <Navbar /> <main className="flex-1">{children}</main> <Footer />
           </div>
-          <FloatingActions />
-          <CookieConsent />
-          <Toaster richColors position="top-right" />
+          <FloatingActions /> <CookieConsent /> <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>

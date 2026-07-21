@@ -15,8 +15,7 @@ export const products: Product[] = [
     title: "Support Desk Portal",
     category: "Software",
     image: "/images/portfolio/service-portal.svg",
-    description:
-      "A customer support dashboard with tickets, status tracking, and admin reporting.",
+    description: "A customer support dashboard with tickets, status tracking, and admin reporting.",
     price: "Custom Quote",
     features: ["Ticket workflow", "Role access", "Reports", "Notifications"],
     status: "Active",

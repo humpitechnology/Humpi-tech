@@ -1,8 +1,6 @@
 "use client";
-
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useEffect, useState } from "react";
-
+import { animate, motion, useInView, useMotionValue, useScroll, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 export function Reveal({
   children,
   className,
@@ -25,7 +23,6 @@ export function Reveal({
     </motion.div>
   );
 }
-
 export function MotionCard({
   children,
   className,
@@ -43,7 +40,6 @@ export function MotionCard({
     </motion.div>
   );
 }
-
 export function FloatingIcon({
   children,
   className,
@@ -61,36 +57,32 @@ export function FloatingIcon({
     </motion.div>
   );
 }
-
 export function AnimatedStat({ value }: { value: string }) {
   const number = Number.parseFloat(value.replace(/[^\d.]/g, ""));
   const suffix = value.replace(/[\d.]/g, "");
+  const ref = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
   const [display, setDisplay] = useState(value);
-  const { scrollYProgress } = useScroll();
-  const transformed = useTransform(
-    scrollYProgress,
-    [0, 0.25],
-    [0, Number.isFinite(number) ? number : 0],
-  );
-
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const motionValue = useMotionValue(0);
   useEffect(() => {
-    if (!Number.isFinite(number)) return;
-    return transformed.on("change", (latest) => {
+    if (!Number.isFinite(number) || !isInView || hasAnimated.current) return;
+    hasAnimated.current = true;
+    const unsubscribe = motionValue.on("change", (latest) => {
       setDisplay(`${Math.round(latest)}${suffix}`);
     });
-  }, [number, suffix, transformed]);
-
-  return <>{display}</>;
+    const controls = animate(motionValue, number, { duration: 1.2, ease: [0.22, 1, 0.36, 1] });
+    return () => {
+      unsubscribe();
+      controls.stop();
+      setDisplay(value);
+    };
+  }, [isInView, motionValue, number, suffix, value]);
+  return <span ref={ref}>{display}</span>;
 }
-
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
   return (
     <motion.div
       className="fixed left-0 top-0 z-50 h-1 origin-left bg-gradient-to-r from-primary to-accent"
