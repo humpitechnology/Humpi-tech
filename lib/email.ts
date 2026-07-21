@@ -4,6 +4,11 @@ import nodemailer from "nodemailer";
 import type { QuoteSubmission } from "@/types/quote";
 
 const DEFAULT_SALES_EMAIL = "admin@humpitechnology.in";
+const REQUIRED_SMTP_ENV = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD"] as const;
+
+function hasEmailConfig() {
+  return REQUIRED_SMTP_ENV.every((name) => Boolean(process.env[name]));
+}
 
 function getRequiredEnv(name: string) {
   const value = process.env[name];
@@ -30,6 +35,10 @@ function getTransporter() {
 }
 
 export async function sendQuoteEmails(submission: QuoteSubmission) {
+  if (!hasEmailConfig()) {
+    return;
+  }
+
   const transporter = getTransporter();
   const salesEmail = process.env.SALES_EMAIL || DEFAULT_SALES_EMAIL;
   const submittedTime = submission.createdAt.toLocaleString("en-IN", {
