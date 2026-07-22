@@ -2,13 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X } from "lucide-react";
 import { navigation } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/88 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
@@ -31,15 +29,6 @@ export default function Navbar() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            aria-label="Toggle dark mode"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card transition hover:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            <Sun className="size-4 dark:hidden" />
-            <Moon className="hidden size-4 dark:block" />
-          </button>
           <Link
             href="/contact"
             className="hidden rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:inline-flex"

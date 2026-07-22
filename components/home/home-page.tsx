@@ -167,7 +167,7 @@ export function HomePage() {
         titleClassName="text-heading"
       >
         <div className="grid gap-5 md:grid-cols-3">
-          {testimonials.map((item) => (
+          {testimonials.slice(0, 3).map((item) => (
             <MotionCard key={item.name} className="h-full">
               <Card className="h-full">
                 <div className="flex gap-1 text-warning">

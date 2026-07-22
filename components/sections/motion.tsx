@@ -58,8 +58,9 @@ export function FloatingIcon({
   );
 }
 export function AnimatedStat({ value }: { value: string }) {
-  const number = Number.parseFloat(value.replace(/[^\d.]/g, ""));
-  const suffix = value.replace(/[\d.]/g, "");
+  const animatedValue = value.match(/^(\d+(?:\.\d+)?)([+%]?)$/);
+  const number = animatedValue ? Number.parseFloat(animatedValue[1]) : Number.NaN;
+  const suffix = animatedValue?.[2] ?? "";
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
   const [display, setDisplay] = useState(value);
