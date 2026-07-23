@@ -8,7 +8,7 @@ export function ServiceCard({ service }: { service: Service }) {
   const Icon = iconMap[service.icon];
   return (
     <MotionCard className="h-full">
-      <Card className="group h-full transition hover:border-primary/40">
+      <Card id={service.slug} className="group h-full scroll-mt-24 transition hover:border-primary/40">
         <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
           <Icon className="size-6" />
         </div>

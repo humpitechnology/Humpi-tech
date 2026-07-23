@@ -8,6 +8,15 @@ export const company = {
   location: "Kolkata, West Bengal, India",
   address: "Kolkata, West Bengal, India",
   hours: "Monday to Saturday, 10:00 AM - 7:00 PM IST",
+  serviceAreas: [
+    "Kolkata",
+    "West Bengal",
+    "India",
+    "United States",
+    "United Kingdom",
+    "Canada",
+    "Australia",
+  ],
   tagline: "Enterprise technology, automation, and digital growth partner.",
   description:
     "Humpi Technology delivers website development, mobile app development, CRM solutions, digital marketing, BPO and call center services, messaging campaigns, and business growth support for growing organizations.",

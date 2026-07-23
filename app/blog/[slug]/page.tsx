@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Card } from "@/components/ui/card";
 import { blogs } from "@/data/blogs";
-import { company } from "@/data/company";
-import { siteUrl } from "@/lib/utils";
+import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return blogs.map((post) => ({ slug: post.slug }));
@@ -19,17 +20,15 @@ export async function generateMetadata({
   const post = blogs.find((item) => item.slug === slug);
   if (!post) return {};
 
-  return {
+  return createPageMetadata({
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `${siteUrl}/blog/${post.slug}` },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `${siteUrl}/blog/${post.slug}`,
-      type: "article",
-    },
-  };
+    path: `/blog/${post.slug}`,
+    image: post.image,
+    type: "article",
+    publishedTime: post.date,
+    keywords: [post.category, "Humpi Technology blog", "business technology"],
+  });
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -40,22 +39,17 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     notFound();
   }
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    author: { "@type": "Organization", name: company.name },
-    publisher: { "@type": "Organization", name: company.name },
-    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
-  };
-
   return (
     <article className="section-padding">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+          blogPostingSchema(post),
+        ]}
       />
       <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
         <p className="text-sm font-bold text-primary">

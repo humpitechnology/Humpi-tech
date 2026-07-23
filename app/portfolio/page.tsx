@@ -1,13 +1,29 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { portfolio } from "@/data/portfolio";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Portfolio | Website, CRM, AI Automation and Business Software Work",
+  description:
+    "View Humpi Technology portfolio examples across healthcare platforms, CRM dashboards, AI voice workflows, restaurant websites, e-commerce, ERP, and logistics systems.",
+  path: "/portfolio",
+  keywords: ["software portfolio", "website development portfolio", "CRM dashboard examples"],
+});
+
 export default function PortfolioPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Portfolio", path: "/portfolio" }])}
+      />
       <PageHeader
         eyebrow="Portfolio"
         title="Digital work designed for clarity, speed, and business outcomes."

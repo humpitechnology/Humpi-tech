@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Digital Transformation Solutions | Automation, Cloud, QA and Growth",
+  description:
+    "Outcome-focused digital transformation packages for support automation, cloud migration, QA programs, SEO lead generation, BPO setup, and growth operations.",
+  path: "/solutions",
+  keywords: ["digital transformation solutions", "support automation", "cloud migration", "QA program"],
+});
+
 const solutions = [
   "Digital Transformation Roadmap",
   "Customer Support Automation",
@@ -13,6 +26,9 @@ const solutions = [
 export default function SolutionsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Solutions", path: "/solutions" }])}
+      />
       <PageHeader
         eyebrow="Solutions"
         title="Outcome-focused solution packages for growth and operations."

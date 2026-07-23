@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Card } from "@/components/ui/card";
 import { company, processSteps, timeline, values } from "@/data/company";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "About Humpi Technology | IT Consulting Company in Kolkata",
+  description:
+    "Learn about Humpi Technology, a Kolkata-based IT consulting and digital delivery company focused on reliable software, automation, QA, SEO, and support.",
+  path: "/about",
+  keywords: ["about Humpi Technology", "IT consulting Kolkata", "software company Kolkata"],
+});
+
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "About", path: "/about" }])} />
       <section className="bg-muted/60">
         <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6">
           <p className="text-sm font-bold uppercase tracking-wide text-accent">

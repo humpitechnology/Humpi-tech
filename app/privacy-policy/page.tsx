@@ -1,8 +1,26 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/sections/page-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { company } from "@/data/company";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Privacy Policy | Humpi Technology",
+  description:
+    "Review how Humpi Technology handles website inquiries, contact form submissions, career information, analytics readiness, and privacy requests.",
+  path: "/privacy-policy",
+});
+
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "" },
+          { name: "Privacy Policy", path: "/privacy-policy" },
+        ])}
+      />
       <PageHeader
         eyebrow="Privacy Policy"
         title="How Humpi Technology handles website and inquiry information."

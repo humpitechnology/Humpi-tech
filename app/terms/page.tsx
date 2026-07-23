@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import { PageHeader } from "@/components/sections/page-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { company } from "@/data/company";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Terms of Use | Humpi Technology",
+  description:
+    "Read the general website terms for using Humpi Technology service information, business inquiries, proposals, content, and brand materials.",
+  path: "/terms",
+});
+
 export default function TermsPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Terms", path: "/terms" }])}
+      />
       <PageHeader
         eyebrow="Terms"
         title="Website terms and service information."

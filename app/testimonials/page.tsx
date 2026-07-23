@@ -1,11 +1,33 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { testimonials } from "@/data/testimonials";
+import { breadcrumbSchema, reviewListSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Client Testimonials | Humpi Technology Reviews",
+  description:
+    "Read client testimonials for Humpi Technology across software development, CRM, websites, support automation, SEO, BPO, and digital operations projects.",
+  path: "/testimonials",
+  keywords: ["Humpi Technology reviews", "client testimonials", "IT services reviews"],
+});
+
 export default function TestimonialsPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "" },
+            { name: "Testimonials", path: "/testimonials" },
+          ]),
+          reviewListSchema(),
+        ]}
+      />
       <PageHeader
         eyebrow="Testimonials"
         title="Customer reviews from teams that value dependable delivery."

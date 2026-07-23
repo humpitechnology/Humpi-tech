@@ -6,8 +6,15 @@ import { FloatingActions } from "@/components/layout/floating-actions";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollProgress } from "@/components/sections/motion";
 import { company } from "@/data/company";
+import {
+  localBusinessSchema,
+  organizationSchema,
+  siteNavigationSchema,
+  websiteSchema,
+} from "@/lib/schema";
 import { siteUrl } from "@/lib/utils";
 import "./globals.css";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -29,6 +36,20 @@ export const metadata: Metadata = {
     "BPO Kolkata",
   ],
   alternates: { canonical: siteUrl },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  authors: [{ name: company.name, url: siteUrl }],
+  creator: company.name,
+  publisher: company.name,
   openGraph: {
     title: company.name,
     description: company.description,
@@ -46,29 +67,23 @@ export const metadata: Metadata = {
   },
   icons: { icon: "/logo/icon.svg", shortcut: "/favicon.ico", apple: "/logo/icon.svg" },
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0b1220",
+  colorScheme: "light dark",
+};
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: company.name,
-    url: company.website,
-    email: company.email,
-    telephone: company.phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Kolkata",
-      addressRegion: "West Bengal",
-      addressCountry: "IN",
-    },
-    sameAs: [company.website],
-  };
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full bg-background text-foreground">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        <JsonLd
+          data={[
+            organizationSchema(),
+            localBusinessSchema(),
+            websiteSchema(),
+            siteNavigationSchema(),
+          ]}
         />
         <ThemeProvider>
           <ScrollProgress />

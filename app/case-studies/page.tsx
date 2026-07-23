@@ -1,12 +1,31 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { caseStudies } from "@/data/case-studies";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Case Studies | Automation, QA, CRM, Local SEO and Operations Results",
+  description:
+    "Explore Humpi Technology case studies showing business challenges, practical solutions, technology stacks, and measurable results across digital operations.",
+  path: "/case-studies",
+  keywords: ["IT case studies", "automation case study", "CRM case study", "local SEO case study"],
+});
+
 export default function CaseStudiesPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "" },
+          { name: "Case Studies", path: "/case-studies" },
+        ])}
+      />
       <PageHeader
         eyebrow="Case Studies"
         title="Business problems, practical solutions, and measurable results."

@@ -1,12 +1,28 @@
+import type { Metadata } from "next";
 import { Mail } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { company } from "@/data/company";
 import { jobs } from "@/data/jobs";
+import { breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Careers at Humpi Technology | IT, QA, Marketing and Support Jobs",
+  description:
+    "Explore career opportunities at Humpi Technology for practical, quality-focused work across software, QA, digital marketing, automation, and support.",
+  path: "/careers",
+  keywords: ["Humpi Technology careers", "IT jobs Kolkata", "software jobs Kolkata"],
+});
+
 export default function CareersPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: "Home", path: "" }, { name: "Careers", path: "/careers" }])}
+      />
       <PageHeader
         eyebrow="Careers"
         title="Join a practical, quality-focused technology team."

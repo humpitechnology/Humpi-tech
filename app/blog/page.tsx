@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -5,11 +6,29 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PageHeader } from "@/components/sections/page-header";
 import { MotionCard, Reveal } from "@/components/sections/motion";
+import { JsonLd } from "@/components/seo/json-ld";
 import { blogs } from "@/data/blogs";
+import { blogListSchema, breadcrumbSchema } from "@/lib/schema";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Blog | Software, SEO, AI Automation, QA and Digital Growth Insights",
+  description:
+    "Read Humpi Technology articles on software development, technical SEO, AI automation, QA testing, CRM, cloud, UI/UX, and digital marketing.",
+  path: "/blog",
+  keywords: ["software blog", "technical SEO blog", "AI automation insights", "QA testing articles"],
+});
+
 export default function BlogPage() {
   const categories = Array.from(new Set(blogs.map((post) => post.category)));
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ name: "Home", path: "" }, { name: "Blog", path: "/blog" }]),
+          blogListSchema(),
+        ]}
+      />
       <PageHeader
         eyebrow="Blog"
         title="Insights for software, QA, SEO, automation, and digital growth."
