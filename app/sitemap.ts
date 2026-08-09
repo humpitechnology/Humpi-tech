@@ -5,6 +5,7 @@ const routes = [
   "",
   "/about",
   "/services",
+  "/services/aeo-geo-optimization",
   "/industries",
   "/solutions",
   "/portfolio",

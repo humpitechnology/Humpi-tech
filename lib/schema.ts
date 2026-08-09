@@ -70,7 +70,7 @@ export function localBusinessSchema() {
         "@type": "Service",
         name: service.title,
         description: service.description,
-        url: `${siteUrl}/services#${service.slug}`,
+        url: `${siteUrl}${service.href ?? `/services#${service.slug}`}`,
       },
     })),
   };
@@ -145,7 +145,7 @@ export function serviceListSchema() {
         provider: { "@id": organizationId },
         areaServed: company.serviceAreas,
         serviceType: service.title,
-        url: `${siteUrl}/services#${service.slug}`,
+        url: `${siteUrl}${service.href ?? `/services#${service.slug}`}`,
       },
     })),
   };

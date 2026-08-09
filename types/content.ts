@@ -20,6 +20,7 @@ export type Service = {
   slug: string;
   title: string;
   description: string;
+  href?: string;
   icon: IconName;
   features: string[];
   benefits: string[];

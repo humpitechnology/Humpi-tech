@@ -2,6 +2,26 @@ import type { Service } from "@/types/content";
 
 export const services: Service[] = [
   {
+    slug: "aeo-geo-optimization",
+    title: "AEO & GEO Optimization",
+    description:
+      "Answer Engine and Generative Engine optimization for content that is easier for search engines and AI-powered systems to understand, summarize, and cite.",
+    href: "/services/aeo-geo-optimization",
+    icon: "search",
+    features: [
+      "AEO content strategy",
+      "GEO content strategy",
+      "Structured data implementation",
+      "FAQ and answer optimization",
+      "Entity and brand optimization",
+    ],
+    benefits: [
+      "Improved search discoverability",
+      "Stronger topical authority",
+      "Better AI-friendly content structure",
+    ],
+  },
+  {
     slug: "website-development",
     title: "Website Development",
     description:

@@ -6,9 +6,13 @@ import { iconMap } from "@/components/sections/icon-map";
 import { MotionCard } from "@/components/sections/motion";
 export function ServiceCard({ service }: { service: Service }) {
   const Icon = iconMap[service.icon];
+  const href = service.href ?? "/contact";
   return (
     <MotionCard className="h-full">
-      <Card id={service.slug} className="group h-full scroll-mt-24 transition hover:border-primary/40">
+      <Card
+        id={service.slug}
+        className="group h-full scroll-mt-24 transition hover:border-primary/40"
+      >
         <div className="inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
           <Icon className="size-6" />
         </div>
@@ -22,10 +26,10 @@ export function ServiceCard({ service }: { service: Service }) {
           ))}
         </ul>
         <Link
-          href="/contact"
+          href={href}
           className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover"
         >
-          Discuss this service
+          {service.href ? "Explore this service" : "Discuss this service"}
           <ArrowRight className="size-4 transition group-hover:translate-x-1" />
         </Link>
       </Card>
