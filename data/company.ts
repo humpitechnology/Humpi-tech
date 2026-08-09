@@ -1,6 +1,6 @@
 export const company = {
   name: "Humpi Technology",
-  website: "https://humpitechnology.in",
+  website: "https://www.humpitechnology.in",
   email: "admin@humpitechnology.in",
   phone: "+91 7031222466",
   phoneHref: "+917031222466",

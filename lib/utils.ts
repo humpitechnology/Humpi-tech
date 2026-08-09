@@ -5,4 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const siteUrl = "https://humpitechnology.in";
+export const siteUrl = "https://www.humpitechnology.in";

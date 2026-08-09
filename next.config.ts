@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "www.humpitechnology.in" }],
-        destination: "https://humpitechnology.in/:path*",
+        has: [{ type: "host", value: "humpitechnology.in" }],
+        destination: "https://www.humpitechnology.in/:path*",
         permanent: true,
       },
     ];
