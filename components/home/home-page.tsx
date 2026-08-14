@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles, Star } from "lucide-react";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { TestSmsCard } from "@/components/forms/test-sms-form";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { blogs } from "@/data/blogs";
@@ -233,6 +234,21 @@ export function HomePage() {
           ))}
         </div>
       </Section>
+      <section className="section-padding">
+        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wide text-primary">Live SMS demo</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-heading sm:text-4xl">
+              See it working before you call us.
+            </h2>
+            <p className="mt-4 leading-7 text-body">
+              Curious how our SMS notifications feel on a real phone? Enter your number and we will
+              send a test message through the same service we use for quote confirmations.
+            </p>
+          </div>
+          <TestSmsCard />
+        </div>
+      </section>
       <ContactBar />
       <section className="bg-secondary text-primary-foreground">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center">

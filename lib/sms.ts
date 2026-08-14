@@ -6,8 +6,9 @@ type QuoteNotificationInput = {
   service: string;
 };
 
-export type QuoteSmsResult =
-  { success: true; providerRef?: string } | { success: false; error: string };
+export type SmsResult = { success: true; providerRef?: string } | { success: false; error: string };
+
+export type QuoteSmsResult = SmsResult;
 
 const REQUIRED_ENV = [
   "MESSAGEINDIA_USERNAME",
@@ -49,6 +50,10 @@ function buildQuoteSmsMessage(input: QuoteNotificationInput) {
   return `Dear ${input.fullName}, thank you for contacting Humpi Technologies. We have received your enquiry regarding ${input.service}. Our team will contact you within one business day. Regards, Humpi Technologies`;
 }
 
+function buildTestSmsMessage() {
+  return `Hi, this is a test SMS from Humpi Technologies. You have successfully tested our SMS service. Thank you.`;
+}
+
 function parseProviderResponse(body: string): { ok: boolean; ref?: string; error?: string } {
   const trimmed = body.trim();
 
@@ -82,12 +87,12 @@ function parseProviderResponse(body: string): { ok: boolean; ref?: string; error
   return { ok: true };
 }
 
-export async function sendQuoteSms(input: QuoteNotificationInput): Promise<QuoteSmsResult> {
+async function sendSmsToNumber(phone: string, message: string): Promise<SmsResult> {
   if (!hasMessageIndiaConfig()) {
     return { success: false, error: "SMS is not configured" };
   }
 
-  const mobile = normalizeMobileNumber(input.phone);
+  const mobile = normalizeMobileNumber(phone);
 
   if (mobile.length !== 10) {
     return { success: false, error: "Invalid mobile number" };
@@ -96,7 +101,7 @@ export async function sendQuoteSms(input: QuoteNotificationInput): Promise<Quote
   const baseUrl = environmentValue("MESSAGEINDIA_BASE_URL") || DEFAULT_BASE_URL;
   const params = new URLSearchParams({
     username: environmentValue("MESSAGEINDIA_USERNAME"),
-    message: buildQuoteSmsMessage(input),
+    message,
     sendername: environmentValue("MESSAGEINDIA_SENDER_ID"),
     smstype: environmentValue("MESSAGEINDIA_SMS_TYPE") || "TRANS",
     numbers: mobile,
@@ -137,4 +142,12 @@ export async function sendQuoteSms(input: QuoteNotificationInput): Promise<Quote
       error: error instanceof Error ? error.message : "Unknown SMS error",
     };
   }
+}
+
+export function sendQuoteSms(input: QuoteNotificationInput): Promise<QuoteSmsResult> {
+  return sendSmsToNumber(input.phone, buildQuoteSmsMessage(input));
+}
+
+export function sendTestSms(phone: string): Promise<SmsResult> {
+  return sendSmsToNumber(phone, buildTestSmsMessage());
 }
