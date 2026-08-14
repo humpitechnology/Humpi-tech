@@ -13,6 +13,7 @@ import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
 import { testimonials } from "@/data/testimonials";
 import { ServiceCard } from "@/components/sections/service-card";
+import { ContactBar } from "@/components/sections/contact-bar";
 import { AnimatedStat, FloatingIcon, MotionCard, Reveal } from "@/components/sections/motion";
 export function HomePage() {
   return (
@@ -232,6 +233,7 @@ export function HomePage() {
           ))}
         </div>
       </Section>
+      <ContactBar />
       <section className="bg-secondary text-primary-foreground">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendQuoteEmails } from "@/lib/email";
 import { appendQuoteRequest, getAllQuoteRequests } from "@/lib/quote-csv";
+import { sendQuoteSms } from "@/lib/sms";
 import { validateAndSanitizeQuoteRequest } from "@/lib/validation";
 import type { QuoteSubmission } from "@/types/quote";
 
@@ -106,6 +107,10 @@ export async function POST(request: NextRequest) {
 
     sendQuoteEmails(submission).catch((error: unknown) => {
       console.error("Quote email notification failed", error);
+    });
+
+    sendQuoteSms(validation.data).catch((error: unknown) => {
+      console.error("Quote SMS notification failed", error);
     });
 
     return NextResponse.json(

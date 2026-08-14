@@ -71,7 +71,7 @@ Copy `.env.example` to `.env.local` and fill values when integrations are enable
 
 ### Request a Quote Backend
 
-The contact page posts quote requests to `POST /api/request-quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, stored in `data/quote_requests.csv`, and then sent through SMTP email notifications. Admin tooling can read all saved records from `GET /api/request-quote`.
+The contact page posts quote requests to `POST /api/request-quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, stored in `data/quote_requests.csv`, and then sent through SMTP email notifications and a Message India SMS confirmation. Admin tooling can read all saved records from `GET /api/request-quote`.
 
 CSV columns:
 
@@ -89,7 +89,16 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASSWORD=
 SALES_EMAIL=admin@humpitechnology.in
+MESSAGEINDIA_BASE_URL=http://sms.messageindia.in
+MESSAGEINDIA_USERNAME=
+MESSAGEINDIA_API_KEY=
+MESSAGEINDIA_SENDER_ID=
+MESSAGEINDIA_SMS_TYPE=TRANS
+MESSAGEINDIA_PEID=
+MESSAGEINDIA_TEMPLATE_ID=
 ```
+
+The `MESSAGEINDIA_*` variables configure the Message India SMS provider. When any required variable is missing, the CSV submission is saved as usual but no SMS is sent. The SMS is sent server-side after the CSV row is appended, and a temporary SMS failure never blocks or corrupts the saved submission. Update the confirmation message inside `lib/sms.ts` (`buildQuoteSmsMessage`) to match your approved DLT template.
 
 Seed sample quote requests:
 
