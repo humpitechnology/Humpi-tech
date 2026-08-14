@@ -1,11 +1,27 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
+
+const COOKIE_CONSENT_KEY = "humpi-cookie-consent";
+const COOKIE_CONSENT_EVENT = "humpi-cookie-consent-change";
+
+function subscribeToCookieConsent(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(COOKIE_CONSENT_EVENT, callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(COOKIE_CONSENT_EVENT, callback);
+  };
+}
+
+function getCookieConsentSnapshot() {
+  return localStorage.getItem(COOKIE_CONSENT_KEY) !== "accepted";
+}
+
 export function CookieConsent() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    setVisible(localStorage.getItem("humpi-cookie-consent") !== "accepted");
-  }, []);
+  const visible = useSyncExternalStore(subscribeToCookieConsent, getCookieConsentSnapshot, () => false);
+
   if (!visible) {
     return null;
   }
@@ -18,8 +34,8 @@ export function CookieConsent() {
       <Button
         className="mt-3"
         onClick={() => {
-          localStorage.setItem("humpi-cookie-consent", "accepted");
-          setVisible(false);
+          localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
+          window.dispatchEvent(new Event(COOKIE_CONSENT_EVENT));
         }}
       >
         Accept

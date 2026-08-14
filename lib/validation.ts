@@ -3,15 +3,36 @@ import type { QuoteRequestInput, SanitizedQuoteRequest } from "@/types/quote";
 
 const phoneRegex = /^\+?[0-9\s().-]{7,20}$/;
 
+export const quoteServiceOptions = [
+  "Web Development",
+  "Mobile App Development",
+  "UI/UX Design",
+  "QA Testing",
+  "Automation Testing",
+  "API Development",
+  "AI & Automation Solutions",
+  "Cloud & DevOps",
+  "Digital Marketing",
+  "HR & Recruitment Solutions",
+  "Other",
+] as const;
+
 export const quoteRequestSchema = z.object({
-  fullName: z.string().trim().min(3, "Full name must be at least 3 characters"),
+  fullName: z.string().trim().min(1, "Full name is required"),
   email: z.string().trim().email("Enter a valid email address"),
-  phone: z.string().trim().regex(phoneRegex, "Enter a valid phone number"),
-  service: z.string().trim().min(1, "Service is required"),
+  phone: z.string().trim().min(1, "Phone number is required").regex(phoneRegex, "Enter a valid phone number"),
+  service: z
+    .string()
+    .trim()
+    .min(1, "Select a service")
+    .refine(
+      (service) => quoteServiceOptions.includes(service as (typeof quoteServiceOptions)[number]),
+      "Select a valid service",
+    ),
   message: z
     .string()
     .trim()
-    .min(1, "Project goals, timeline, and budget are required")
+    .min(1, "Project details are required")
     .max(3000, "Project goals, timeline, and budget must be 3000 characters or fewer"),
   website: z.string().optional(),
 });

@@ -4,8 +4,13 @@ import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { quoteRequestSchema, type QuoteRequestFormInput } from "@/lib/validation";
+import {
+  quoteRequestSchema,
+  quoteServiceOptions,
+  type QuoteRequestFormInput,
+} from "@/lib/validation";
 export function ContactForm() {
   const {
     register,
@@ -17,7 +22,7 @@ export function ContactForm() {
     defaultValues: { fullName: "", email: "", phone: "", service: "", message: "", website: "" },
   });
   async function onSubmit(values: QuoteRequestFormInput) {
-    const response = await fetch("/api/quote", {
+    const response = await fetch("/api/request-quote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -54,7 +59,16 @@ export function ContactForm() {
           <Input placeholder="Phone number" autoComplete="tel" {...register("phone")} />
         </Field>
         <Field error={errors.service?.message}>
-          <Input placeholder="Service required" {...register("service")} />
+          <Select required defaultValue="" {...register("service")}>
+            <option value="" disabled>
+              Select a service
+            </option>
+            {quoteServiceOptions.map((service) => (
+              <option key={service} value={service}>
+                {service}
+              </option>
+            ))}
+          </Select>
         </Field>
       </div>
       <Field error={errors.message?.message}>

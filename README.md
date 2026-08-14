@@ -42,6 +42,7 @@ npm run start
 - `npm run typecheck` - run TypeScript checks
 - `npm run build` - create production build
 - `npm run start` - run production server
+- `npm run seed` - add sample quote requests to `data/quote_requests.csv`
 - `npm run format` - format files with Prettier
 - `npm run format:check` - check formatting
 
@@ -70,13 +71,19 @@ Copy `.env.example` to `.env.local` and fill values when integrations are enable
 
 ### Request a Quote Backend
 
-The contact page posts quote requests to `POST /api/quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, stored in MongoDB Atlas, and then sent through SMTP email notifications.
+The contact page posts quote requests to `POST /api/request-quote`. Submissions are validated server-side, sanitized, rate limited, checked for recent duplicates by email, stored in `data/quote_requests.csv`, and then sent through SMTP email notifications. Admin tooling can read all saved records from `GET /api/request-quote`.
+
+CSV columns:
+
+```text
+id,full_name,email,phone_number,service_required,project_details,submitted_at
+```
+
+The CSV file is created automatically with headers when missing. Each successful submission appends one row with a generated ID and ISO timestamp.
 
 Required variables:
 
 ```env
-MONGODB_URI=
-MONGODB_DB=
 SMTP_HOST=
 SMTP_PORT=
 SMTP_USER=
@@ -84,12 +91,13 @@ SMTP_PASSWORD=
 SALES_EMAIL=admin@humpitechnology.in
 ```
 
-MongoDB Atlas setup:
+Seed sample quote requests:
 
-1. Create or choose a MongoDB Atlas cluster.
-2. Add the connection string to `MONGODB_URI`.
-3. Optionally set `MONGODB_DB` when the database name is not included in the connection string.
-4. Submit a test quote and confirm a document is created in the `quotes` collection.
+```bash
+npm run seed
+```
+
+The seed command uses stable sample IDs and skips records that already exist, so it can be run repeatedly without duplicating sample data.
 
 Email setup:
 
@@ -103,7 +111,7 @@ End-to-end test checklist:
 - International phone numbers such as `+91 7031222466` are accepted.
 - More than 3000 message characters are rejected.
 - A successful submission clears the form and shows the success toast.
-- MongoDB Atlas receives a new quote document with status `New`.
+- `data/quote_requests.csv` receives a new row.
 - `SALES_EMAIL` receives the `New Quote Request` email.
 - The customer receives the `Thank you for contacting Humpi Technologies` email.
 - A repeat submission from the same email within 5 minutes returns a friendly failure.
