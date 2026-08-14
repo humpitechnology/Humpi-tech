@@ -18,7 +18,9 @@ export function ContactBar() {
         <Card className="overflow-hidden border-border bg-gradient-to-br from-card via-background to-background p-0 shadow-[var(--shadow)]">
           <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-sm font-bold uppercase tracking-wide text-primary">Prefer messaging?</p>
+              <p className="text-sm font-bold uppercase tracking-wide text-primary">
+                Prefer messaging?
+              </p>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-heading sm:text-4xl">
                 WhatsApp, SMS, or a quick call.
               </h2>
