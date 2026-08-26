@@ -11,7 +11,14 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/88 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center" aria-label="Humpi Technology home">
-          <Image src="/logo/icon.svg" alt="" width={52} height={52} priority />
+          <Image
+            src="/logo/icon.svg"
+            alt=""
+            width={52}
+            height={52}
+            priority
+            style={{ width: 52, height: "auto" }}
+          />
           <span className="ml-3 leading-tight">
             <span className="block text-base font-black text-primary">Humpi</span>
             <span className="block text-sm font-black text-primary">Technology</span>
